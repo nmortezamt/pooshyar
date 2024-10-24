@@ -5,9 +5,9 @@ namespace Modules\Product\Product\Models;
 use Illuminate\Database\Eloquent\Model;
 use Modules\Category\Models\Category;
 use Modules\Product\Brand\Models\Brand;
-use Modules\Product\Color\Models\color;
-use Modules\Product\Gallery\Models\gallery;
-use Modules\Product\Size\Models\size;
+use Modules\Product\Color\Models\Color;
+use Modules\Product\Gallery\Models\Gallery;
+use Modules\Product\Size\Models\Size;
 
 
 class Product extends Model
@@ -66,7 +66,7 @@ class Product extends Model
         return $this->belongsToMany(Color::class,'product_colors', 'product_id','color_id');
     }
 
-    public function size()
+    public function sizes()
     {
         return $this->belongsToMany(Size::class,'product_sizes','product_id','size_id');
     }
