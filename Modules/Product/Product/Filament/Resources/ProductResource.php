@@ -17,6 +17,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
 use Modules\Category\Models\Category;
+use Modules\Product\Brand\Models\Brand;
 use Modules\Product\Product\Filament\Resources\ProductResource\RelationManagers;
 use Modules\Product\Product\Models\Product;
 
@@ -101,7 +102,8 @@ class ProductResource extends Resource
 
                     Select::make('brand_id')
                         ->label(__('brand'))
-                        ->relationship('brand', 'name'),
+                        ->searchable()
+                        ->options(Brand::all()->pluck('name','id')),
 
                     RichEditor::make('body')
                         ->label(__('body'))->columnSpanFull()
