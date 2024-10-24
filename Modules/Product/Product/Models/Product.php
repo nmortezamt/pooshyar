@@ -3,7 +3,7 @@
 namespace Modules\Product\Product\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Modules\Category\Models\category;
+use Modules\Category\Models\Category;
 use Modules\Product\Brand\Models\brand;
 use Modules\Product\Color\Models\color;
 use Modules\Product\Gallery\Models\gallery;

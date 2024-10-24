@@ -2,8 +2,6 @@
 
 namespace Modules\Blog\Models;
 
-use App\Models\categoryArticle;
-use App\Models\subcategoryArticle;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;

@@ -5,7 +5,7 @@ namespace Modules\Product\Brand\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Modules\Category\Models\category;
+use Modules\Category\Models\Category;
 use Modules\Product\Product\Models\Product;
 
 class Brand extends Model
