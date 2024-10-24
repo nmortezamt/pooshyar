@@ -4,9 +4,9 @@ namespace App\Http\Livewire\Admin\Product;
 
 use App\Models\log;
 use App\Models\priceDate;
-use App\Models\product;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Modules\Product\Product\Models\product;
 
 class Create extends Component
 {

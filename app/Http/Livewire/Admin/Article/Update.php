@@ -2,19 +2,19 @@
 
 namespace App\Http\Livewire\Admin\Article;
 
-use Livewire\Component;
-use Illuminate\Support\Facades\Storage;
-use Livewire\WithFileUploads;
-use App\Models\article;
 use App\Models\log;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Livewire\Component;
+use Livewire\WithFileUploads;
+use Modules\Blog\Models\blog;
 
 
 class Update extends Component
 {
     use WithFileUploads;
     public $image;
-    public article $article;
+    public blog $article;
     protected $rules = [
         'article.title' => 'required | string | max:100',
         'article.link' => 'required | string | max:100',

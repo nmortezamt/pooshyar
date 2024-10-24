@@ -6,7 +6,7 @@
         if(isset(\App\Models\logoSite::get()[0]))
         $logo = \App\Models\logoSite::get()[0];
         @endphp
-            <img src="/uploads/{{ $logo->img }}" width="150px"  class="responsive-image-footer">
+{{--            <img src="/uploads/{{ $logo->img }}" width="150px"  class="responsive-image-footer">--}}
 
         <div class="container">
 
@@ -17,8 +17,8 @@
                             if(isset(\App\Models\FooterlinkTitle::get()[0]))
                             $footerLinkTitle = \App\Models\FooterlinkTitle::get()[0];
                         @endphp
-                        <h6 class="widget_title">{{$footerLinkTitle->page->title }}
-                        </h6>
+{{--                        <h6 class="widget_title">{{$footerLinkTitle->page->title }}--}}
+{{--                        </h6>--}}
                         <ul class="contact_info contact_info_light">
                             <li>
                                 <i class="ti-location-pin"></i>
@@ -26,7 +26,7 @@
                                 if(isset(\App\Models\footerTitle::get()[0]))
                                 $footer_title = \App\Models\footerTitle::get()[0]
                                 @endphp
-                              <p>{{ $footer_title->title }}</p>
+{{--                              <p>{{ $footer_title->title }}</p>--}}
                             </li>
 
                             <li>
@@ -35,7 +35,7 @@
                                 if(isset(\App\Models\footerTitle::get()[1]))
                                 $footer_title = \App\Models\footerTitle::get()[1]
                                @endphp
-                                <a href="mailto:{{ $footer_title->title }}">{{ $footer_title->title }}</a>
+{{--                                <a href="mailto:{{ $footer_title->title }}">{{ $footer_title->title }}</a>--}}
                             </li>
                             <li>
                                 <i class="ti-mobile"></i>
@@ -43,8 +43,8 @@
                                 if(isset(\App\Models\footerTitle::get()[2]))
                                 $footer_title = \App\Models\footerTitle::get()[2]
                                 @endphp
-                               <a href="tel:{{ $footer_title->title }}"><p>
-                                {{ \App\Models\persianNumber::translate($footer_title->title)}}</p></a>
+{{--                               <a href="tel:{{ $footer_title->title }}"><p>--}}
+{{--                                {{ \App\Models\persianNumber::translate($footer_title->title)}}</p></a>--}}
                             </li>
                         </ul>
                     </div>
@@ -60,8 +60,8 @@
                         if(isset(\App\Models\FooterlinkTitle::get()[1]))
                         $footerLinkTitle = \App\Models\FooterlinkTitle::get()[1];
                         @endphp
-                        <h6 class="widget_title">{{ $footerLinkTitle->page->title }}
-                        </h6>
+{{--                        <h6 class="widget_title">{{ $footerLinkTitle->page->title }}--}}
+{{--                        </h6>--}}
                         <ul class="widget_links">
                             @foreach (\App\Models\FooterlinkOne::all() as $footerOne)
                             <li><a href="{{ url($footerOne->page->link) }}">{{ $footerOne->page->title }}</a></li>
@@ -76,8 +76,8 @@
                         if(isset(\App\Models\FooterlinkTitle::get()[2]))
                         $footerLinkTitle = \App\Models\FooterlinkTitle::get()[2];
                         @endphp
-                        <h6 class="widget_title">{{ $footerLinkTitle->page->title }}
-                        </h6>
+{{--                        <h6 class="widget_title">{{ $footerLinkTitle->page->title }}--}}
+{{--                        </h6>--}}
                         <ul class="widget_links">
                             @foreach (\App\Models\FooterlinkTwo::all() as $footerTwo)
                                  <li><a href="{{ url($footerTwo->page->link) }}">{{ $footerTwo->page->title }}
@@ -97,12 +97,12 @@
             $footer_title = \App\Models\footerTitle::get()[4]
             @endphp
            <article>
-            <h3>{{ $footer_title->title }}</h3>
+{{--            <h3>{{ $footer_title->title }}</h3>--}}
             @php
             if(isset(\App\Models\footerTitle::get()[5]))
             $footer_title = \App\Models\footerTitle::get()[5]
          @endphp
-            <p>{{ $footer_title->title }}</p>
+{{--            <p>{{ $footer_title->title }}</p>--}}
            </article>
         </div>
     </div>
@@ -114,8 +114,8 @@
                     if(isset(\App\Models\footerTitle::get()[6]))
                     $footer_title = \App\Models\footerTitle::get()[6]
                     @endphp
-                    <p class="mb-md-0 text-center text-md-left">{{ $footer_title->title }}
-                    </p>
+{{--                    <p class="mb-md-0 text-center text-md-left">{{ $footer_title->title }}--}}
+{{--                    </p>--}}
                 </div>
                 <div class="col-md-6">
                     <ul class="footer_payment text-center text-md-right">

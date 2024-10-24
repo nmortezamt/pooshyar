@@ -2,9 +2,9 @@
 
 namespace App\Http\Livewire\Admin\Product\Color;
 
-use App\Models\color;
 use App\Models\log;
 use Livewire\Component;
+use Modules\Product\Color\Models\color;
 
 class Update extends Component
 {

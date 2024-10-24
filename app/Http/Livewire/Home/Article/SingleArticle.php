@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire\Home\Article;
 
-use App\Models\article;
 use App\Models\cart;
 use App\Models\categoryArticle;
 use App\Models\commentArticle;
@@ -12,6 +11,7 @@ use Artesaos\SEOTools\Facades\SEOMeta;
 use Artesaos\SEOTools\Facades\TwitterCard;
 use Illuminate\Support\Facades\Session;
 use Livewire\Component;
+use Modules\Blog\Models\blog;
 
 class SingleArticle extends Component
 {
@@ -19,7 +19,7 @@ class SingleArticle extends Component
     public $article;
     public function mount($link)
     {
-        $this->article = article::where('link',$link)->first();
+        $this->article = blog::where('link',$link)->first();
         $this->comment = new commentArticle();
 
     }
@@ -80,8 +80,8 @@ class SingleArticle extends Component
 
     public function nextPost($id)
     {
-        $articleCurrent = article::findOrFail($id);
-        $nextArticle = article::where('id','>',$articleCurrent->id)->first();
+        $articleCurrent = blog::findOrFail($id);
+        $nextArticle = blog::where('id','>',$articleCurrent->id)->first();
         if(isset($nextArticle))
         return redirect()->route('article.single.index',$nextArticle->link);
         $this->emit('toast', 'warning', ' این آخرین مقاله است');
@@ -91,8 +91,8 @@ class SingleArticle extends Component
 
     public function previousPost($id)
     {
-        $articleCurrent = article::findOrFail($id);
-        $previousArticle = article::where('id','<',$articleCurrent->id)->first();
+        $articleCurrent = blog::findOrFail($id);
+        $previousArticle = blog::where('id','<',$articleCurrent->id)->first();
         if(isset($previousArticle))
         return redirect()->route('article.single.index',$previousArticle->link);
         $this->emit('toast', 'warning', ' این اولین مقاله است');
@@ -105,7 +105,7 @@ class SingleArticle extends Component
         if(! $this->article){
             abort(404);
         }else{
-            $article = article::where('id',$this->article->id)->first();
+            $article = blog::where('id',$this->article->id)->first();
             $category = categoryArticle::where('id',$article->category_article_id)->first();
             $comments = commentArticle::where([['status',1],['article_id',$article->id]])->count();
             if (auth()->user()) {

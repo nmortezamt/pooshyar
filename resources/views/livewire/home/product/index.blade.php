@@ -10,17 +10,17 @@
                         <div class="product-image">
                             <div class="product_img_box" wire:ignore>
                                 <img id="product_img" src="/uploads/{{ $product->img }}"
-                                    data-zoom-image="/uploads/{{ $product->img }}" alt="{{ $product->title }}">
+                                     data-zoom-image="/uploads/{{ $product->img }}" alt="{{ $product->title }}">
                                 <a class="product_img_zoom" title="گالری">
                                     <span class="linearicons-zoom-in"></span>
                                 </a>
                             </div>
                             <div id="pr_item_gallery" class="product_gallery_item slick_slider" data-slides-to-show="4"
-                                data-slides-to-scroll="1" data-infinite="false" wire:ignore>
+                                 data-slides-to-scroll="1" data-infinite="false" wire:ignore>
                                 @forelse ($galleries as $gallery)
                                     <div wire:key="{{ $gallery->id }}" class="item">
                                         <a class="product_gallery_item" data-image="/uploads/{{ $gallery->img }}"
-                                            data-zoom-image="/uploads/{{ $gallery->img }}">
+                                           data-zoom-image="/uploads/{{ $gallery->img }}">
                                             <img src="/uploads/{{ $gallery->img }}">
                                         </a>
                                     </div>
@@ -39,33 +39,35 @@
                                     @if ($this->buyType == 'single')
                                         @if ($product->discount_price)
                                             <span
-                                                class="price">{{ \App\Models\persianNumber::translate(number_format(($product->price / 100) * (100 - $product->discount_price))) }}
+                                                    class="price">{{ \App\Models\persianNumber::translate(number_format(($product->price / 100) * (100 - $product->discount_price))) }}
                                                 تومان</span>
                                             <del>{{ \App\Models\persianNumber::translate(number_format($product->price)) }}
-                                                تومان</del>
+                                                تومان
+                                            </del>
                                             <div class="on_sale">
                                                 <span>{{ \App\Models\persianNumber::translate($product->discount_price) }}%
                                                     تخفیف</span>
                                             </div>
                                         @else
                                             <span
-                                                class="price">{{ \App\Models\persianNumber::translate(number_format($product->price)) }}
+                                                    class="price">{{ \App\Models\persianNumber::translate(number_format($product->price)) }}
                                                 تومان</span>
                                         @endif
                                     @elseif ($this->buyType == 'major')
                                         @if ($product->discount_price)
                                             <span
-                                                class="price">{{ \App\Models\persianNumber::translate(number_format(($product->price_major / 100) * (100 - $product->discount_price))) }}
+                                                    class="price">{{ \App\Models\persianNumber::translate(number_format(($product->price_major / 100) * (100 - $product->discount_price))) }}
                                                 تومان</span>
                                             <del>{{ \App\Models\persianNumber::translate(number_format($product->price_major)) }}
-                                                تومان</del>
+                                                تومان
+                                            </del>
                                             <div class="on_sale">
                                                 <span>{{ \App\Models\persianNumber::translate($product->discount_price) }}%
                                                     تخفیف</span>
                                             </div>
                                         @else
                                             <span
-                                                class="price">{{ \App\Models\persianNumber::translate(number_format($product->price_major)) }}
+                                                    class="price">{{ \App\Models\persianNumber::translate(number_format($product->price_major)) }}
                                                 تومان</span>
                                         @endif
                                     @endif
@@ -76,7 +78,7 @@
                                         <div class="product_rate" style="width:{{ $rating * 20 }}%"></div>
                                     </div>
                                     <span
-                                        class="rating_num">({{ \App\Models\persianNumber::translate($countComment) }})</span>
+                                            class="rating_num">({{ \App\Models\persianNumber::translate($countComment) }})</span>
                                 </div>
 
                                 <div class="pr_desc">
@@ -89,7 +91,8 @@
                                         @if ($product->number < 10 && $product->number >0)
                                             <li class="text-danger"><i class="linearicons-sync"></i> فقط
                                                 {{ \App\Models\persianNumber::translate($product->number) }} تا در انبار
-                                                باقی مانده </li>
+                                                باقی مانده
+                                            </li>
                                         @endif
                                     </ul>
                                 </div>
@@ -99,23 +102,23 @@
                                         <div class="row">
                                             <div class="radio-group">
                                                 <input type="radio" wire:model='buyType' name="buy_type_single"
-                                                    id="single-radio" value="single">
+                                                       id="single-radio" value="single">
                                                 <label for="single-radio" class="ml-3">تکی:</label>
                                             </div>
                                         </div>
                                         @php
-                                            $qty_color = \App\Models\color::where('product_id', $product->id)->count();
-                                            $qty_size = \App\Models\size::where('product_id', $product->id)->count();
+                                            $qty_color = \Modules\Product\Color\Models\color::where('product_id', $product->id)->count();
+                                            $qty_size = \Modules\Product\Size\Models\size::where('product_id', $product->id)->count();
                                             $total_count = $qty_color * $qty_size;
                                         @endphp
                                         @if($product->number >= $total_count)
-                                        <div class="row">
-                                            <div class="radio-group">
-                                                <input type="radio" wire:model='buyType' name="buy_type_major"
-                                                    id="major-radio" value="major">
-                                                <label for="major-radio" class="ml-3">عمده:</label>
+                                            <div class="row">
+                                                <div class="radio-group">
+                                                    <input type="radio" wire:model='buyType' name="buy_type_major"
+                                                           id="major-radio" value="major">
+                                                    <label for="major-radio" class="ml-3">عمده:</label>
+                                                </div>
                                             </div>
-                                        </div>
                                         @endif
                                     </div>
                                     <div wire:loading wire:target="buyType">
@@ -125,9 +128,9 @@
                                     <br>
                                     <span class="switch_lable">رنگ</span>
                                     <div class="product_color_switch" wire:ignore>
-                                        @forelse (\App\Models\color::where('product_id',$product->id)->get() as $color)
+                                        @forelse (\Modules\Product\Color\Models\color::where('product_id',$product->id)->get() as $color)
                                             <span data-color="{{ $color->value }}" title="{{ $color->name }}"
-                                                wire:click="color({{ $color->id }})"></span>
+                                                  wire:click="color({{ $color->id }})"></span>
                                             <div wire:loading wire:target="color({{ $color->id }})">
                                                 <i class="fas fa-spinner fa-spin"></i>
                                             </div>
@@ -138,7 +141,7 @@
                                 <div class="pr_switch_wrap">
                                     <span class="switch_lable">سایز</span>
                                     <div class="product_size_switch" wire:ignore>
-                                        @forelse(\App\Models\size::where('product_id',$product->id)->get() as $size)
+                                        @forelse(\Modules\Product\Size\Models\size::where('product_id',$product->id)->get() as $size)
                                             <span wire:click="size({{ $size->id }})">{{ $size->name }}</span>
                                             <div wire:loading wire:target="size({{ $size->id }})">
                                                 <i class="fas fa-spinner fa-spin"></i>
@@ -160,12 +163,12 @@
                                                 </span>
                                                 @if ($this->buyType == 'single')
                                                     <input type="text" name="quantity"
-                                                        value="{{ $this->countSingle }}" title="تعداد" class="qty"
-                                                        size="4" disabled>
+                                                           value="{{ $this->countSingle }}" title="تعداد" class="qty"
+                                                           size="4" disabled>
                                                 @elseif($this->buyType == 'major')
                                                     <input type="text" name="quantity"
-                                                        value="{{ $this->countMajor }}" title="تعداد" class="qty"
-                                                        size="4" disabled>
+                                                           value="{{ $this->countMajor }}" title="تعداد" class="qty"
+                                                           size="4" disabled>
                                                 @endif
 
                                                 <button class="plu" wire:click='addToCount'>+</button>
@@ -183,8 +186,8 @@
                                     <div class="cart_btn">&nbsp;&nbsp;
                                         @if ($caart)
                                             <button class="btn btn-fill-out btn-addtocart" type="button"
-                                                wire:click="removeOfCart({{ $caart->id }})"><i
-                                                    class="icon-trash"></i> حذف از
+                                                    wire:click="removeOfCart({{ $caart->id }})"><i
+                                                        class="icon-trash"></i> حذف از
                                                 سبد خرید
                                                 <div wire:loading wire:target="removeOfCart({{ $caart->id }})">
                                                     <i class="fas fa-spinner fa-spin"></i>
@@ -193,8 +196,8 @@
                                             </button>
                                         @else
                                             <button class="btn btn-fill-out btn-addtocart" type="button"
-                                                wire:click="addToCart({{ $product->id }})"><i
-                                                    class="icon-basket-loaded"></i> به
+                                                    wire:click="addToCart({{ $product->id }})"><i
+                                                        class="icon-basket-loaded"></i> به
                                                 سبد خرید اضافه کنید
                                                 <div wire:loading wire:target="addToCart">
                                                     <i class="fas fa-spinner fa-spin"></i>
@@ -205,8 +208,8 @@
                                         @if (auth()->user() &&
                                                 \App\Models\favorite::where('user_id', auth()->user()->id)->where('product_id', $product->id)->first())
                                             <a class="add_wishlist" style="color:red"
-                                                wire:click="remove_wishlist({{ $product->id }})"
-                                                title="حذف از علاقه مندی ">
+                                               wire:click="remove_wishlist({{ $product->id }})"
+                                               title="حذف از علاقه مندی ">
                                                 <div wire:loading wire:target="remove_wishlist">
                                                     <i class="fas fa-spinner fa-spin"></i>
                                                 </div>
@@ -216,7 +219,7 @@
                                             </a>
                                         @else
                                             <a class="add_wishlist" wire:click="add_favorite({{ $product->id }})"
-                                                title="افزودن به علاقه مندی">
+                                               title="افزودن به علاقه مندی">
                                                 <span wire:loading wire:target="add_favorite">
                                                     <i class="fas fa-spinner fa-spin"></i>
                                                 </span>
@@ -239,18 +242,19 @@
                                     @if ($this->buyType == 'single')
                                         @if ($product->discount_price)
                                             <span
-                                                class="price">{{ \App\Models\persianNumber::translate(number_format(($product->price / 100) * (100 - $product->discount_price) * $this->countSingle)) }}
+                                                    class="price">{{ \App\Models\persianNumber::translate(number_format(($product->price / 100) * (100 - $product->discount_price) * $this->countSingle)) }}
                                                 تومان برای
                                                 {{ \App\Models\persianNumber::translate(number_format($this->countSingle)) }}
                                                 مورد</span>
                                             <del>{{ \App\Models\persianNumber::translate(number_format($product->price)) }}
-                                                تومان</del> &nbsp;
+                                                تومان
+                                            </del> &nbsp;
                                             <span
-                                                class="on_sale">{{ \App\Models\persianNumber::translate($product->discount_price) }}%
+                                                    class="on_sale">{{ \App\Models\persianNumber::translate($product->discount_price) }}%
                                                 تخفیف</span>
                                         @else
                                             <span
-                                                class="price">{{ \App\Models\persianNumber::translate(number_format($product->price * $this->countSingle)) }}
+                                                    class="price">{{ \App\Models\persianNumber::translate(number_format($product->price * $this->countSingle)) }}
                                                 تومان برای
                                                 {{ \App\Models\persianNumber::translate(number_format($this->countSingle)) }}مورد
                                             </span>
@@ -258,18 +262,19 @@
                                     @elseif ($this->buyType == 'major')
                                         @if ($product->discount_price)
                                             <span
-                                                class="price">{{ \App\Models\persianNumber::translate(number_format(($product->price_major / 100) * (100 - $product->discount_price) * $this->countMajor)) }}
+                                                    class="price">{{ \App\Models\persianNumber::translate(number_format(($product->price_major / 100) * (100 - $product->discount_price) * $this->countMajor)) }}
                                                 تومان برای
                                                 {{ \App\Models\persianNumber::translate(number_format($this->countMajor)) }}
                                                 مورد</span>
                                             <del>{{ \App\Models\persianNumber::translate(number_format($product->price_major)) }}
-                                                تومان</del> &nbsp;
+                                                تومان
+                                            </del> &nbsp;
                                             <span
-                                                class="on_sale">{{ \App\Models\persianNumber::translate($product->discount_price) }}%
+                                                    class="on_sale">{{ \App\Models\persianNumber::translate($product->discount_price) }}%
                                                 تخفیف</span>
                                         @else
                                             <span
-                                                class="price">{{ \App\Models\persianNumber::translate(number_format($product->price_major * $this->countMajor)) }}
+                                                    class="price">{{ \App\Models\persianNumber::translate(number_format($product->price_major * $this->countMajor)) }}
                                                 تومان برای
                                                 {{ \App\Models\persianNumber::translate(number_format($this->countMajor)) }}مورد
                                             </span>
@@ -282,7 +287,7 @@
                             <hr>
                             <ul class="product-meta">
                                 <li>دسته بندی: <a
-                                        href="{{ route('product.category.index', $category->link) }}">{{ $category->title }}</a>
+                                            href="{{ route('product.category.index', $category->link) }}">{{ $category->title }}</a>
                                 </li>
                             </ul>
 
@@ -290,11 +295,13 @@
                                 <span>اشتراک:</span>
                                 <ul class="social_icons">
 
-                                    <li><a href="tg://msg_url?url={{ route('product.single.index', ['id' => $product->id, 'link' => $product->link]) }}&text={{ $product->title }}"
-                                            class="sc_telegram"><i class="fab fa-telegram"></i></a></li>
+                                    <li>
+                                        <a href="tg://msg_url?url={{ route('product.single.index', ['id' => $product->id, 'link' => $product->link]) }}&text={{ $product->title }}"
+                                           class="sc_telegram"><i class="fab fa-telegram"></i></a></li>
 
-                                    <li><a href="https://www.instagram.com/?url={{ route('product.single.index', ['id' => $product->id, 'link' => $product->link]) }}"
-                                            class="sc_instagram"><i class="fab fa-instagram"></i></a></li>
+                                    <li>
+                                        <a href="https://www.instagram.com/?url={{ route('product.single.index', ['id' => $product->id, 'link' => $product->link]) }}"
+                                           class="sc_instagram"><i class="fab fa-instagram"></i></a></li>
 
                                 </ul>
                             </div>
@@ -312,27 +319,27 @@
                             <ul class="nav nav-tabs" role="tablist">
                                 <li class="nav-item">
                                     <a class="nav-link active" id="Description-tab" data-toggle="tab"
-                                        href="#Description" role="tab" aria-controls="Description"
-                                        aria-selected="true">توضیحات</a>
+                                       href="#Description" role="tab" aria-controls="Description"
+                                       aria-selected="true">توضیحات</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" id="Additional-info-tab" data-toggle="tab"
-                                        href="#Additional-info" role="tab" aria-controls="Additional-info"
-                                        aria-selected="false">مشخصات</a>
+                                       href="#Additional-info" role="tab" aria-controls="Additional-info"
+                                       aria-selected="false">مشخصات</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" id="Reviews-tab" data-toggle="tab" href="#Reviews"
-                                        role="tab" aria-controls="Reviews" aria-selected="false">دیدگاه
+                                       role="tab" aria-controls="Reviews" aria-selected="false">دیدگاه
                                         ({{ \App\Models\persianNumber::translate($countComment) }})</a>
                                 </li>
                             </ul>
                             <div class="tab-content shop_info_tab">
                                 <div class="tab-pane fade show active" id="Description" role="tabpanel"
-                                    aria-labelledby="Description-tab" wire:ignore>
+                                     aria-labelledby="Description-tab" wire:ignore>
                                     <div>{!! $product->body !!}</div>
                                 </div>
                                 <div class="tab-pane fade" id="Additional-info" role="tabpanel"
-                                    aria-labelledby="Additional-info-tab" wire:ignore>
+                                     aria-labelledby="Additional-info-tab" wire:ignore>
                                     <table class="table table-bordered">
                                         @forelse(\App\Models\attributeValue::where('product_id',$product->id)->get() as $attribute)
                                             <tr>

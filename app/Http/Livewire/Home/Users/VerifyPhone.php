@@ -4,15 +4,14 @@ namespace App\Http\Livewire\Home\Users;
 
 use App\Models\cart;
 use App\Models\smsCode;
-use App\Models\User;
 use Artesaos\SEOTools\Facades\OpenGraph;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Exception;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Session;
 use Livewire\Component;
 use Melipayamak;
+use Modules\User\Models\User;
 
 
 class VerifyPhone extends Component

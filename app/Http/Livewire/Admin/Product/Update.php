@@ -5,10 +5,10 @@ namespace App\Http\Livewire\Admin\Product;
 use App\Models\cart;
 use App\Models\log;
 use App\Models\priceDate;
-use App\Models\product;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Modules\Product\Product\Models\product;
 
 class Update extends Component
 {
@@ -60,7 +60,7 @@ class Update extends Component
         foreach($carts as $cart){
             $cart->delete();
         }
-        
+
         }
         $carts = cart::where('product_id',$this->product->id)->get();
         foreach($carts as $cart){

@@ -2,10 +2,9 @@
 
 namespace App\Http\Livewire\Home\Profile;
 
-use App\Models\User;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
+use Modules\User\Models\User;
 
 class EditPassword extends Component
 {
@@ -38,8 +37,8 @@ class EditPassword extends Component
     }
     public function render()
     {
-     
-    
+
+
         return view('livewire.home.profile.edit-password')->layout('layouts.login');
     }
 }

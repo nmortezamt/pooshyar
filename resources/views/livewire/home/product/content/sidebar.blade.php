@@ -6,7 +6,7 @@
             <div class="filter-container">
                 <h2>فیلتر بر اساس قیمت</h2>
                 <input type="range" min="100000" max="1000000" step="10" value="0" class="range-slider"
-                    wire:model='selected.price'>
+                       wire:model='selected.price'>
                 <div class="range-values">
                     <span class="min-value">{{ number_format(100000) }} تومان</span>
                     <span class="max-value">{{ number_format(1000000) }} تومان</span>
@@ -17,14 +17,14 @@
             <div class="widget">
                 <h5 class="widget_title">دسته بندی</h5>
                 <ul class="list_brand">
-                    @forelse (\App\Models\category::where('status',1)->get() as $category)
+                    @forelse (\Modules\Category\Models\category::where('status',1)->get() as $category)
                         <li>
                             <div class="custome-checkbox">
                                 <input class="form-check-input" type="checkbox" name="checkbox"
-                                    id="{{ $category->title }}" wire:model="selected.category"
-                                    value="{{ $category->id }}">
+                                       id="{{ $category->title }}" wire:model="selected.category"
+                                       value="{{ $category->id }}">
                                 <label class="form-check-label"
-                                    for="{{ $category->title }}"><span>{{ $category->title }}</span></label>
+                                       for="{{ $category->title }}"><span>{{ $category->title }}</span></label>
                             </div>
                         </li>
 
@@ -37,13 +37,13 @@
         <div class="widget">
             <h5 class="widget_title">سایز</h5>
             <ul class="list_brand">
-                @forelse (\App\Models\size::all()->unique('name') as $size)
+                @forelse (\Modules\Product\Size\Models\size::all()->unique('name') as $size)
                     <li>
                         <div class="custome-checkbox">
                             <input class="form-check-input" type="checkbox" name="checkbox" id="{{ $size->name }}"
-                                wire:model="selected.size" value="{{ $size->name }}">
+                                   wire:model="selected.size" value="{{ $size->name }}">
                             <label class="form-check-label"
-                                for="{{ $size->name }}"><span>{{ $size->name }}</span></label>
+                                   for="{{ $size->name }}"><span>{{ $size->name }}</span></label>
                         </div>
                     </li>
                 @empty
@@ -53,11 +53,11 @@
         <div class="widget">
             <h5 class="widget_title">رنگ</h5>
             <ul class="list_brand">
-                @forelse (\App\Models\color::all()->unique('name') as $color)
+                @forelse (\Modules\Product\Color\Models\color::all()->unique('name') as $color)
                     <li>
                         <div class="custome-checkbox">
                             <input class="form-check-input" type="checkbox" name="checkbox" id="{{ $color->name }}"
-                                wire:model="selected.color" value="{{ $color->name }}">
+                                   wire:model="selected.color" value="{{ $color->name }}">
                             <label class="form-check-label" for="{{ $color->name }}">{{ $color->name }}</label>
                         </div>
                     </li>

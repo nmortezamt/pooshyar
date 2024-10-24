@@ -4,6 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Modules\Product\Color\Models\color;
+use Modules\Product\Product\Models\product;
+use Modules\Product\Size\Models\size;
+use Modules\User\Models\User;
 
 class cart extends Model
 {

@@ -2,11 +2,11 @@
 
 namespace App\Http\Livewire\Admin\Product\Gallery;
 
-use App\Models\gallery;
 use App\Models\log;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
+use Modules\Product\Gallery\Models\gallery;
 
 class Index extends Component
 {

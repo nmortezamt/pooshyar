@@ -2,10 +2,10 @@
 
 namespace App\Http\Livewire\Home\Search;
 
-use App\Models\article;
-use App\Models\product;
-use Livewire\Component;
 use Illuminate\Support\Str;
+use Livewire\Component;
+use Modules\Blog\Models\blog;
+use Modules\Product\Product\Models\product;
 
 class Index extends Component
 {
@@ -21,7 +21,7 @@ class Index extends Component
     {
         $this->searchable =[
             product::class => ['title','img'],
-            article::class => ['title','img']
+            blog::class => ['title','img']
         ];
     }
 

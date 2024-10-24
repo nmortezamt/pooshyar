@@ -19,9 +19,9 @@
             </form>
             </a>
             <a class="tab__item btn btn-danger text-white" style="margin-top:-60px; margin-left:10px; float:left;"
-            href="{{ route('color.trashed') }}"
+               href="{{ route('color.trashed') }}"
             >سطل زباله
-            ({{ \App\Models\color::onlyTrashed()->count() }})
+                ({{ \Modules\Product\Color\Models\color::onlyTrashed()->count() }})
             </a>
         </div>
 
@@ -32,43 +32,43 @@
                     <table class="table">
 
                         <thead role="rowgroup">
-                            <tr role="row" class="title-row">
-                                <th>آیدی</th>
-                                <th>نام رنگ</th>
-                                <th>کد رنگ</th>
-                                <th>محصول</th>
-                                <th>عملیات</th>
+                        <tr role="row" class="title-row">
+                            <th>آیدی</th>
+                            <th>نام رنگ</th>
+                            <th>کد رنگ</th>
+                            <th>محصول</th>
+                            <th>عملیات</th>
 
-                            </tr>
+                        </tr>
                         </thead>
 
                         <tbody>
-                            @if ($readyToLoad)
+                        @if ($readyToLoad)
 
 
                             @forelse ($colors as $color)
 
-                            <tr role="row">
-                                <td>{{ $color->id }}</td>
-                                <td>{{ $color->name }}</td>
-                                <td><a style="background-color: {{ $color->value }}">{{ $color->value }}</a></td>
-                                <td>{{ $color->product->title }}</td>
-                                <td>
-                                    <button wire:click='remove({{ $color->id }})' class="item-delete mlg-15"
-                                        title="حذف"></button>
+                                <tr role="row">
+                                    <td>{{ $color->id }}</td>
+                                    <td>{{ $color->name }}</td>
+                                    <td><a style="background-color: {{ $color->value }}">{{ $color->value }}</a></td>
+                                    <td>{{ $color->product->title }}</td>
+                                    <td>
+                                        <button wire:click='remove({{ $color->id }})' class="item-delete mlg-15"
+                                                title="حذف"></button>
 
-                                    <a href="{{ route('color.update',$color) }}" class="item-edit "
-                                        title="ویرایش"></a>
-                                </td>
-                            </tr>
+                                        <a href="{{ route('color.update',$color) }}" class="item-edit "
+                                           title="ویرایش"></a>
+                                    </td>
+                                </tr>
                             @empty
-                            <div>رنگی وجود ندارد</div>
+                                <div>رنگی وجود ندارد</div>
                             @endforelse
 
                         </tbody>
                         {{ $colors->render() }}
                         @else
-                        <div class="alert-warning alert">در حال خواندن اطلاعات</div>
+                            <div class="alert-warning alert">در حال خواندن اطلاعات</div>
                         @endif
                     </table>
                 </div>
@@ -80,14 +80,15 @@
 
                     <div class="form-group">
                         <input wire:model.lazy='color.name' type="text" placeholder="نام  رنگ "
-                            class="form-control">
+                               class="form-control">
                         @error('color.name')
                         <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
 
                     <div class="form-group">
-                        <input data-jscolor="" wire:model.lazy='color.value' type="text" placeholder=" کد رنگ " class="form-control">
+                        <input data-jscolor="" wire:model.lazy='color.value' type="text" placeholder=" کد رنگ "
+                               class="form-control">
                         @error('color.value')
                         <span class="text-danger">{{ $message }}</span>
                         @enderror
@@ -96,8 +97,8 @@
                     <div class="form-group">
                         <select wire:model.lazy='color.product_id' class="form-control">
                             <option value="1"> _محصول</option>
-                            @foreach (\App\Models\product::all() as $product)
-                            <option value="{{ $product->id }}">{{ $product->title }}</option>
+                            @foreach (\Modules\Product\Product\Models\product::all() as $product)
+                                <option value="{{ $product->id }}">{{ $product->title }}</option>
                             @endforeach
                         </select>
                         @error('color.product_id')

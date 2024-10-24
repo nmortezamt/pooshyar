@@ -2,12 +2,12 @@
 
 namespace App\Http\Livewire\Admin\Category;
 
-use App\Models\category;
 use App\Models\log;
 use App\Models\subcategory;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
+use Modules\Category\Models\category;
 
 class Index extends Component
 {

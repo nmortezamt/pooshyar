@@ -3,14 +3,14 @@
         if(isset(\App\Models\FooterlinkTitle::get()[3]))
         $footer_link_title = \App\Models\FooterlinkTitle::get()[3]
     @endphp
-    <h6 class="widget_title">{{ $footer_link_title->page->title }}
-    </h6>
+{{--    <h6 class="widget_title">{{ $footer_link_title->page->title }}--}}
+{{--    </h6>--}}
     @php
     if(isset(\App\Models\footerTitle::get()[3]))
     $footer_title = \App\Models\footerTitle::get()[3]
     @endphp
-    <p>{{ $footer_title->title }}
-    </p>
+{{--    <p>{{ $footer_title->title }}--}}
+{{--    </p>--}}
     <div class="newsletter_form rounded_input">
         <form action="{{ route('post.newletter') }}" method="POST">
             @csrf

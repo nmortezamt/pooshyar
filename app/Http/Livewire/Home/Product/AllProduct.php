@@ -3,23 +3,17 @@
 namespace App\Http\Livewire\Home\Product;
 
 use App\Models\cart;
-use App\Models\color;
 use App\Models\favorite;
 use App\Models\logoSite;
-use App\Models\order;
-use App\Models\product;
 use App\Models\productColorOrder;
 use App\Models\productSizeOrder;
-use App\Models\size;
 use Artesaos\SEOTools\Facades\JsonLd;
 use Artesaos\SEOTools\Facades\OpenGraph;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Artesaos\SEOTools\Facades\TwitterCard;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Session;
 use Livewire\Component;
+use Modules\Product\Product\Models\product;
 
 class AllProduct extends Component
 {

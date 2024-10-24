@@ -2,11 +2,11 @@
 
 namespace App\Http\Livewire\Admin\Header\Banner;
 
-use App\Models\BannerHeader;
 use App\Models\log;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
+use Modules\Banner\Models\Banner;
 
 class Index extends Component
 {
@@ -18,7 +18,7 @@ class Index extends Component
     protected $queryString = ['search'];
     public $readyToLoad = false;
 
-    public BannerHeader $banner;
+    public Banner $banner;
     protected $rules = [
         'banner.title' => 'required | min:3 | max:50',
         'banner.link' => 'required | max:100',
@@ -37,7 +37,7 @@ class Index extends Component
 
     public function mount()
     {
-        $this->banner = new BannerHeader();
+        $this->banner = new Banner();
     }
 
     public function banner()
@@ -46,7 +46,7 @@ class Index extends Component
         if($this->banner->count() > 4){
             $this->emit('toast', 'warning', ' نمی توانید بیشتر از 5 تا بنر ثبت کنید');
         }else{
-            $banner = BannerHeader::query()->create([
+            $banner = Banner::query()->create([
                 'title' => $this->banner->title,
                 'link' => $this->banner->link,
                 'description' => $this->banner->description,
@@ -85,7 +85,7 @@ class Index extends Component
 
     public function updateCategorydisable($id)
     {
-        $banner = BannerHeader::find($id);
+        $banner = Banner::find($id);
         $banner->update([
             'status' => 0
         ]);
@@ -98,7 +98,7 @@ class Index extends Component
     }
     public function updateCategoryinable($id)
     {
-        $banner = BannerHeader::find($id);
+        $banner = Banner::find($id);
         $banner->update([
             'status' => 1
         ]);
@@ -113,7 +113,7 @@ class Index extends Component
     public function render()
     {
 
-        $banners = $this->readyToLoad ? BannerHeader::where("title", "LIKE", "%{$this->search}%")
+        $banners = $this->readyToLoad ? Banner::where("title", "LIKE", "%{$this->search}%")
             ->orWhere("id", "{$this->search}")
             ->latest()->paginate(10) : [];
         return view('livewire.admin.header.banner.index',compact('banners'));

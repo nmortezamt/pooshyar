@@ -4,8 +4,8 @@ namespace App\Http\Controllers\panel\permission;
 
 use App\Http\Controllers\Controller;
 use App\Models\permissionUser;
-use App\Models\User;
 use Illuminate\Http\Request;
+use Modules\User\Models\User;
 
 class index extends Controller
 {

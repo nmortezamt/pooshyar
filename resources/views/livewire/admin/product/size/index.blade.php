@@ -28,38 +28,38 @@
                     <table class="table">
 
                         <thead role="rowgroup">
-                            <tr role="row" class="title-row">
-                                <th>آیدی</th>
-                                <th>نام سایز</th>
-                                <th>محصول</th>
-                                <th>عملیات</th>
+                        <tr role="row" class="title-row">
+                            <th>آیدی</th>
+                            <th>نام سایز</th>
+                            <th>محصول</th>
+                            <th>عملیات</th>
 
-                            </tr>
+                        </tr>
                         </thead>
 
                         <tbody>
-                            @if ($readyToLoad)
+                        @if ($readyToLoad)
                             @forelse ($sizes as $size)
-                            <tr role="row">
-                                <td>{{ $size->id }}</td>
-                                <td>{{ $size->name }}</td>
-                                <td>{{ $size->product->title }}</td>
-                                <td>
-                                    <button wire:click='remove({{ $size->id }})' class="item-delete mlg-15"
-                                        title="حذف"></button>
+                                <tr role="row">
+                                    <td>{{ $size->id }}</td>
+                                    <td>{{ $size->name }}</td>
+                                    <td>{{ $size->product->title }}</td>
+                                    <td>
+                                        <button wire:click='remove({{ $size->id }})' class="item-delete mlg-15"
+                                                title="حذف"></button>
 
-                                    <a href="{{ route('size.update',$size) }}" class="item-edit "
-                                        title="ویرایش"></a>
-                                </td>
-                            </tr>
+                                        <a href="{{ route('size.update',$size) }}" class="item-edit "
+                                           title="ویرایش"></a>
+                                    </td>
+                                </tr>
                             @empty
-                            <div>رنگی وجود ندارد</div>
+                                <div>رنگی وجود ندارد</div>
                             @endforelse
 
                         </tbody>
                         {{ $sizes->render() }}
                         @else
-                        <div class="alert-warning alert">در حال خواندن اطلاعات</div>
+                            <div class="alert-warning alert">در حال خواندن اطلاعات</div>
                         @endif
                     </table>
                 </div>
@@ -71,7 +71,7 @@
 
                     <div class="form-group">
                         <input wire:model.lazy='size.name' type="text" placeholder="نام  سایز "
-                            class="form-control">
+                               class="form-control">
                         @error('size.name')
                         <span class="text-danger">{{ $message }}</span>
                         @enderror
@@ -80,8 +80,8 @@
                     <div class="form-group">
                         <select wire:model.lazy='size.product_id' class="form-control">
                             <option value="1"> _محصول</option>
-                            @foreach (\App\Models\product::all() as $product)
-                            <option value="{{ $product->id }}">{{ $product->title }}</option>
+                            @foreach (\Modules\Product\Product\Models\product::all() as $product)
+                                <option value="{{ $product->id }}">{{ $product->title }}</option>
                             @endforeach
                         </select>
                         @error('size.product_id')

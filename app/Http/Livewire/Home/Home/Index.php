@@ -59,7 +59,7 @@ class Index extends Component
 
     public function render()
     {
-        // auth()->loginUsingId(1);
+         auth()->loginUsingId(1);
         if(auth()->user()){
             $carts = cart::where('user_id',auth()->user()->id)->where('status',0)->get();
         }else {
@@ -72,31 +72,33 @@ class Index extends Component
 
         }
         $description = footerTitle::get();
-        SEOMeta::setTitle('تولید و پخش تونیک زنانه ');
-        SEOMeta::setDescription($description[5]->title);
-        OpenGraph::setDescription($description[5]->title);
-        OpenGraph::setTitle('تولید و پخش تونیک زنانه - پوشیار');
-        OpenGraph::setUrl('https://'.$_SERVER['HTTP_HOST']);
-        OpenGraph::addProperty('type', 'website');
-        OpenGraph::addProperty('locale', 'fa_IR');
-        OpenGraph::setSiteName('تولید و پخش تونیک زنانه - پوشیار');
-        $logo = logoSite::first();
-        OpenGraph::addImage('https://'.$_SERVER['HTTP_HOST'].'/uploads/'.$logo->img,['height' => 300, 'width' => 300]);
-        SEOMeta::setCanonical('https://'.$_SERVER['HTTP_HOST']);
-        SEOMeta::setRobots('index,follow');
-        TwitterCard::setType('summary_large_image');
-        TwitterCard::setTitle('تولید و پخش تونیک زنانه - پوشیار');
-        TwitterCard::setSite('@pooshyar');
-        TwitterCard::setDescription($description[5]->title);
-        TwitterCard::setUrl('https://'.$_SERVER['HTTP_HOST']);
-        TwitterCard::setImage('https://'.$_SERVER['HTTP_HOST'].'/uploads/'.$logo->img);
+        if(count($description)) {
+            SEOMeta::setTitle('تولید و پخش تونیک زنانه ');
+//        SEOMeta::setDescription($description[5]->title);
+//        OpenGraph::setDescription($description[5]->title);
+            OpenGraph::setTitle('تولید و پخش تونیک زنانه - پوشیار');
+            OpenGraph::setUrl('https://' . $_SERVER['HTTP_HOST']);
+            OpenGraph::addProperty('type', 'website');
+            OpenGraph::addProperty('locale', 'fa_IR');
+            OpenGraph::setSiteName('تولید و پخش تونیک زنانه - پوشیار');
+            $logo = logoSite::first();
+            OpenGraph::addImage('https://' . $_SERVER['HTTP_HOST'] . '/uploads/' . $logo->img, ['height' => 300, 'width' => 300]);
+            SEOMeta::setCanonical('https://' . $_SERVER['HTTP_HOST']);
+            SEOMeta::setRobots('index,follow');
+            TwitterCard::setType('summary_large_image');
+            TwitterCard::setTitle('تولید و پخش تونیک زنانه - پوشیار');
+            TwitterCard::setSite('@pooshyar');
+//        TwitterCard::setDescription($description[5]->title);
+            TwitterCard::setUrl('https://' . $_SERVER['HTTP_HOST']);
+            TwitterCard::setImage('https://' . $_SERVER['HTTP_HOST'] . '/uploads/' . $logo->img);
 
-        JsonLd::setType('website');
-        JsonLd::setTitle('تولید و پخش تونیک زنانه - پوشیار');
-        JsonLd::setSite('pooshyar');
-        JsonLd::setDescription($description[5]->title);
-        JsonLd::setUrl('https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
-        JsonLd::setImage('https://'.$_SERVER['HTTP_HOST'].'/uploads/'.$logo->img);
+            JsonLd::setType('website');
+            JsonLd::setTitle('تولید و پخش تونیک زنانه - پوشیار');
+            JsonLd::setSite('pooshyar');
+//        JsonLd::setDescription($description[5]->title);
+            JsonLd::setUrl('https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
+//        JsonLd::setImage('https://'.$_SERVER['HTTP_HOST'].'/uploads/'.$logo->img);
+        }
         return view('livewire.home.home.index',compact('carts'))->layout('layouts.home');
     }
 }

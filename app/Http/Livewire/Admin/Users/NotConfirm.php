@@ -3,9 +3,9 @@
 namespace App\Http\Livewire\Admin\Users;
 
 use App\Models\log;
-use App\Models\User;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Modules\User\Models\User;
 
 class NotConfirm extends Component
 {

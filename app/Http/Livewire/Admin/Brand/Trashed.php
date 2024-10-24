@@ -2,12 +2,12 @@
 
 namespace App\Http\Livewire\Admin\Brand;
 
-use App\Models\brand;
 use App\Models\log;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Modules\Product\Brand\Models\brand;
 
 class Trashed extends Component
 {

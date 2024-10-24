@@ -5,8 +5,8 @@ namespace App\Http\Livewire\Admin\Product\Attributevalue;
 use App\Models\attribute;
 use App\Models\attributeValue;
 use App\Models\log;
-use App\Models\product;
 use Livewire\Component;
+use Modules\Product\Product\Models\product;
 
 class Update extends Component
 {

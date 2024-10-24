@@ -2,11 +2,11 @@
 
 namespace App\Http\Livewire\Admin\Product\Color;
 
-use App\Models\color;
 use App\Models\log;
-use App\Models\product as ModelsProduct;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Modules\Product\Color\Models\color;
+use Modules\Product\Product\Models\product as ModelsProduct;
 
 class Product extends Component
 {

@@ -17,9 +17,9 @@
             </div>
             </form>
             <a class="tab__item btn btn-danger text-white" style="margin-top:-60px; margin-left:10px; float:left;"
-            href="{{ route('attributevalue.trashed') }}"
+               href="{{ route('attributevalue.trashed') }}"
             >سطل زباله
-            ({{ \App\Models\attributeValue::onlyTrashed()->count() }})
+                ({{ \App\Models\attributeValue::onlyTrashed()->count() }})
             </a>
             </a>
         </div>
@@ -31,58 +31,59 @@
                     <table class="table">
 
                         <thead role="rowgroup">
-                            <tr role="row" class="title-row">
-                                <th>آیدی</th>
-                                <th>محصولات</th>
-                                <th>مشخصه کالا</th>
-                                <th>مقدار </th>
-                                <th>وضعیت</th>
-                                <th>عملیات</th>
-                            </tr>
+                        <tr role="row" class="title-row">
+                            <th>آیدی</th>
+                            <th>محصولات</th>
+                            <th>مشخصه کالا</th>
+                            <th>مقدار</th>
+                            <th>وضعیت</th>
+                            <th>عملیات</th>
+                        </tr>
                         </thead>
 
                         <tbody>
-                            @if ($readyToLoad)
+                        @if ($readyToLoad)
                             @foreach ($attributeValues as $attributeValue)
 
-                            <tr role="row">
-                                <td>{{ $attributeValue->id }}</td>
+                                <tr role="row">
+                                    <td>{{ $attributeValue->id }}</td>
 
-                                <td>
-                                   {{$attributeValue->product->title}}
-                                </td>
+                                    <td>
+                                        {{$attributeValue->product->title}}
+                                    </td>
 
-                                <td>
-                                    {{ $attributeValue->attribute->title }}
-                            </td>
-                            <td>
-                                {{ $attributeValue->value }}</td>
-                                <td>
-                                    @if ($attributeValue->status==1)
-                                    <button wire:click="updateCategorydisable({{ $attributeValue->id }})"
-                                        class="badge-success badge" style="background-color: green">فعال
-                                    </button>
-                                    @else
-                                    <button wire:click='updateCategoryinable({{ $attributeValue->id }})'
-                                        class="badge-danger badge" style="background-color: red"> غیر فعال
-                                    </button>
-                                    @endif
-                                </td>
-                                <td>
-                                    <button wire:click='remove({{ $attributeValue->id }})' class="item-delete mlg-15"
-                                        title="حذف"></button>
+                                    <td>
+                                        {{ $attributeValue->attribute->title }}
+                                    </td>
+                                    <td>
+                                        {{ $attributeValue->value }}</td>
+                                    <td>
+                                        @if ($attributeValue->status==1)
+                                            <button wire:click="updateCategorydisable({{ $attributeValue->id }})"
+                                                    class="badge-success badge" style="background-color: green">فعال
+                                            </button>
+                                        @else
+                                            <button wire:click='updateCategoryinable({{ $attributeValue->id }})'
+                                                    class="badge-danger badge" style="background-color: red"> غیر فعال
+                                            </button>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <button wire:click='remove({{ $attributeValue->id }})'
+                                                class="item-delete mlg-15"
+                                                title="حذف"></button>
 
-                                    <a href="{{ route('attributevalue.update',$attributeValue) }}"
-                                    class="item-edit"
-                                    title="ویرایش"></a>
-                                </td>
-                            </tr>
+                                        <a href="{{ route('attributevalue.update',$attributeValue) }}"
+                                           class="item-edit"
+                                           title="ویرایش"></a>
+                                    </td>
+                                </tr>
                             @endforeach
                             {{ $attributeValues->render() }}
-                            @else
+                        @else
                             <div class="alert-warning alert">در حال خواندن اطلاعات</div>
 
-                            @endif
+                        @endif
                         </tbody>
                     </table>
                 </div>
@@ -91,44 +92,45 @@
 
             <div class="col-4 bg-white">
                 <p class="box__title">ایجاد مشخصات فنی کالا</p>
-                <form wire:submit.prevent="attribute_value" class="padding-10" enctype="multipart/form-data" role="form">
+                <form wire:submit.prevent="attribute_value" class="padding-10" enctype="multipart/form-data"
+                      role="form">
 
                     <div class="form-group">
                         <select wire:model.lazy='attributeValue.product_id' name="" id="" class="form-control">
                             <option value="-1">انتخاب محصول _</option>
-                            @foreach (\App\Models\product::all() as $product)
-                            <option value="{{ $product->id }}">{{ $product->title }}</option>
+                            @foreach (\Modules\Product\Product\Models\product::all() as $product)
+                                <option value="{{ $product->id }}">{{ $product->title }}</option>
                             @endforeach
                         </select>
                         @error('attributeValue.product_id')
                         <span class="text-danger">{{ $message }}</span>
-                    @enderror
+                        @enderror
                     </div>
 
                     <div class="form-group">
                         <select wire:model.lazy='attributeValue.attribute_id' class="form-control">
                             <option value="-1">انتخاب زیر دسته مشخصات کالا _</option>
                             @foreach (\App\Models\attribute::where('parent' , '>', 0)->get() as $attribute)
-                            <option value="{{ $attribute->id }}">--{{ $attribute->title }}</option>
+                                <option value="{{ $attribute->id }}">--{{ $attribute->title }}</option>
                             @endforeach
                         </select>
                         @error('attributeValue.attribute_id')
                         <span class="text-danger">{{ $message }}</span>
-                    @enderror
+                        @enderror
                     </div>
 
                     <div class="form-group">
                         <input wire:model.lazy='attributeValue.value' type="text" placeholder="مقدار مشخصات کالا "
-                            class="form-control">
+                               class="form-control">
                         @error('attributeValue.value')
-                            <span class="text-danger">{{ $message }}</span>
+                        <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
 
                     <div class="form-group">
                         <div class="notificationGroup">
                             <input wire:model='attributeValue.status' type="checkbox" id="option4" class="form-control"
-                                name="status">
+                                   name="status">
                             <label for="option4">نمایش در مقدار مشخصات کالا</label>
                         </div>
                     </div>

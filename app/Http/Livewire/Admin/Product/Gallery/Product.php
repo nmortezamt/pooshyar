@@ -2,12 +2,12 @@
 
 namespace App\Http\Livewire\Admin\Product\Gallery;
 
-use App\Models\gallery;
 use App\Models\log;
-use App\Models\product as ModelsProduct;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
+use Modules\Product\Gallery\Models\gallery;
+use Modules\Product\Product\Models\product as ModelsProduct;
 
 class Product extends Component
 {
