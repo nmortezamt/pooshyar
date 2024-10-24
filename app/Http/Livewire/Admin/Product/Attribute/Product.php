@@ -2,12 +2,11 @@
 
 namespace App\Http\Livewire\Admin\Product\Attribute;
 
-use App\Models\attribute;
 use App\Models\attributeValue;
 use App\Models\log;
-use App\Models\product as ModelsProduct;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Modules\Product\Product\Models\product as ModelsProduct;
 
 class Product extends Component
 {

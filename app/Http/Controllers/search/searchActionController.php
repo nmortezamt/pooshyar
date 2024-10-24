@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\search;
 
 use App\Http\Controllers\Controller;
-use App\Models\article;
-use App\Models\product;
 use App\Models\searchHistory;
 use Illuminate\Http\Request;
+use Modules\Blog\Models\blog;
+use Modules\Product\Product\Models\product;
 
 class searchActionController extends Controller
 {
@@ -28,7 +28,7 @@ class searchActionController extends Controller
         ->orWhere('id', 'LIKE', "%$query%")
         ->get();
 
-    $articles = article::where('title', 'LIKE', "%$query%")
+    $articles = blog::where('title', 'LIKE', "%$query%")
         // ->orWhere('body', 'LIKE', "%$query%")
         ->get();
 

@@ -38,8 +38,8 @@ return [
 
         'public' => [
             'driver' => 'local',
-            'root' => $_SERVER['DOCUMENT_ROOT'].'/uploads',
-            'url' => env('APP_URL').'/public',
+            'root' => $_SERVER['DOCUMENT_ROOT'],
+            'url' => env('APP_URL'),
             'visibility' => 'public',
             'throw' => false,
         ],

@@ -2,12 +2,11 @@
 
 namespace App\Http\Livewire\Home\Profile;
 
-use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
-use PhpParser\Node\Expr\FuncCall;
+use Modules\User\Models\User;
 
 class AccountDetails extends Component
 {

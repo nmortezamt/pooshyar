@@ -3,9 +3,9 @@
 namespace App\Http\Livewire\Admin\Product\Size;
 
 use App\Models\log;
-use App\Models\size;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Modules\Product\Size\Models\size;
 
 class Index extends Component
 {

@@ -3,10 +3,10 @@
 namespace App\Http\Livewire\Admin\Users;
 
 use App\Models\log;
-use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Modules\User\Models\User;
 
 class Update extends Component
 {

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Modules\Blog\Models\blog;
 
 class categoryArticle extends Model
 {
@@ -19,6 +20,6 @@ class categoryArticle extends Model
 
         public function article()
     {
-        return $this->hasOne(article::class ,'category_article_id','id');
+        return $this->hasOne(blog::class ,'category_article_id','id');
     }
 }

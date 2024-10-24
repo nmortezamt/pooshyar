@@ -7,8 +7,7 @@ use App\Models\cart;
 use App\Models\invoice as ModelsInvoice;
 use App\Models\order;
 use App\Models\payment as ModelsPayment;
-use App\Models\product;
-use Illuminate\Support\Facades\Request as FacadesRequest;
+use Modules\Product\Product\Models\product;
 use Shetabit\Multipay\Invoice;
 use Shetabit\Multipay\Payment;
 

@@ -3,8 +3,8 @@
 namespace App\Http\Livewire\Home\Profile;
 
 use App\Models\payment;
-use App\Models\User;
 use Livewire\Component;
+use Modules\User\Models\User;
 
 class Index extends Component
 {

@@ -2,12 +2,11 @@
 
 namespace App\Http\Livewire\Home\Product;
 
-use App\Models\category;
 use App\Models\commentProduct;
-use App\Models\favorite;
-use App\Models\gallery;
-use App\Models\product;
 use Livewire\Component;
+use Modules\Category\Models\category;
+use Modules\Product\Gallery\Models\gallery;
+use Modules\Product\Product\Models\product;
 
 class QuickView extends Component
 {

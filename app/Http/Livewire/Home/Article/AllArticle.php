@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire\Home\Article;
 
-use App\Models\article;
 use App\Models\cart;
 use App\Models\logoSite;
 use Artesaos\SEOTools\Facades\JsonLd;
@@ -11,6 +10,7 @@ use Artesaos\SEOTools\Facades\SEOMeta;
 use Artesaos\SEOTools\Facades\TwitterCard;
 use Illuminate\Support\Facades\Session;
 use Livewire\Component;
+use Modules\Blog\Models\blog;
 
 class AllArticle extends Component
 {
@@ -48,7 +48,7 @@ class AllArticle extends Component
 
         }
 
-        $articles = article::where('status',1)->latest()->paginate(10);
+        $articles = blog::where('status',1)->latest()->paginate(10);
 
 
         SEOMeta::setTitle('مقالات');

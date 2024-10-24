@@ -1,9 +1,9 @@
 <div>
-<!-- START HEADER -->
-@include('livewire.home.home.header')
-<!-- END HEADER -->
-<div class="main_content">
-    @section('title','جزئیات')
+    <!-- START HEADER -->
+    @include('livewire.home.home.header')
+    <!-- END HEADER -->
+    <div class="main_content">
+        @section('title','جزئیات')
         <div class="section">
             <div class="container">
                 <div class="row">
@@ -11,8 +11,11 @@
                         <div class="single_post">
                             <h1 class="blog_title">{{ $article->title }}</h1>
                             <ul class="list_none blog_meta">
-                                <li><a><i class="ti-calendar"></i> {{\App\Models\persianNumber::translate( jdate($article->created_at)->format('%B %d , %Y'))}}</a></li>
-                                <li><a href="#comment"><i class="ti-comments"></i> نظرات ({{\App\Models\persianNumber::translate( $comments )}})</a></li>
+                                <li>
+                                    <a><i class="ti-calendar"></i> {{\App\Models\persianNumber::translate( jdate($article->created_at)->format('%B %d , %Y'))}}
+                                    </a></li>
+                                <li><a href="#comment"><i class="ti-comments"></i> نظرات
+                                        ({{\App\Models\persianNumber::translate( $comments )}})</a></li>
                             </ul>
                             <div class="blog_img">
                                 <img src="/uploads/{{ $article->img }}" alt="{{ $article->title }}">
@@ -34,11 +37,15 @@
                                             <div class="col-md-4">
                                                 <ul class="social_icons text-md-right">
 
-                                                    <li><a href="https://telegram.me/share/url?url={{ route('article.single.index',$article->link) }}" class="sc_telegram"><i
-                                                    class="fab fa-telegram"></i></a></li>
+                                                    <li>
+                                                        <a href="https://telegram.me/share/url?url={{ route('article.single.index',$article->link) }}"
+                                                           class="sc_telegram"><i
+                                                                class="fab fa-telegram"></i></a></li>
 
-                                                    <li><a href="https://www.instagram.com/?url={{ route('article.single.index',$article->link) }}" class="sc_instagram"><i
-                                                    class="fab fa-instagram"></i></a></li>
+                                                    <li>
+                                                        <a href="https://www.instagram.com/?url={{ route('article.single.index',$article->link) }}"
+                                                           class="sc_instagram"><i
+                                                                class="fab fa-instagram"></i></a></li>
 
 
                                                 </ul>
@@ -96,27 +103,33 @@
                                 <h5>پست های مرتبط</h5>
                             </div>
                             <div class="row">
-                                @forelse (\App\Models\article::where('category_article_id',$category->id)->where('id','!=',$article->id)->where('status',1)->take(4)->get() as $related)
-                                <div wire:key="{{ $related->id }}" class="col-md-6">
-                                    <div class="blog_post blog_style2 box_shadow1">
-                                        <div class="blog_img">
-                                            <a href="{{ route('article.single.index' , $related->link )}}">
-                                                <img src="/uploads/{{ $related->img }}" alt="{{ $related->title }}" class="resize_image">
-                                            </a>
-                                        </div>
-                                        <div class="blog_content bg-white">
-                                            <div class="blog_text">
-                                                <h5 class="blog_title"><a href="{{ route('article.single.index' ,$related->link )}}">{{ $related->title }}</a></h5>
-                                                <ul class="list_none blog_meta">
-                                                    <li><a><i class="ti-calendar"></i>{{ jdate($related->created_at)->format('%B %d ,%Y') }}</a>
-                                                    </li>
-                                                    <li><a><i class="ti-comments"></i>نظرات ({{ $comments}}) </a></li>
-                                                </ul>
-                                                <p>{{ Str::limit($related->description, 50, '...') }}</p>
+                                @forelse (\Modules\Blog\Models\blog::where('category_article_id',$category->id)->where('id','!=',$article->id)->where('status',1)->take(4)->get() as $related)
+                                    <div wire:key="{{ $related->id }}" class="col-md-6">
+                                        <div class="blog_post blog_style2 box_shadow1">
+                                            <div class="blog_img">
+                                                <a href="{{ route('article.single.index' , $related->link )}}">
+                                                    <img src="/uploads/{{ $related->img }}" alt="{{ $related->title }}"
+                                                         class="resize_image">
+                                                </a>
+                                            </div>
+                                            <div class="blog_content bg-white">
+                                                <div class="blog_text">
+                                                    <h5 class="blog_title"><a
+                                                            href="{{ route('article.single.index' ,$related->link )}}">{{ $related->title }}</a>
+                                                    </h5>
+                                                    <ul class="list_none blog_meta">
+                                                        <li>
+                                                            <a><i class="ti-calendar"></i>{{ jdate($related->created_at)->format('%B %d ,%Y') }}
+                                                            </a>
+                                                        </li>
+                                                        <li><a><i class="ti-comments"></i>نظرات ({{ $comments}}) </a>
+                                                        </li>
+                                                    </ul>
+                                                    <p>{{ Str::limit($related->description, 50, '...') }}</p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
                                 @empty
 
                                 @endforelse

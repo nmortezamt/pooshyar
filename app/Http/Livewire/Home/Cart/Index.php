@@ -3,17 +3,17 @@
 namespace App\Http\Livewire\Home\Cart;
 
 use App\Models\cart;
-use App\Models\color;
 use App\Models\footerTitle;
 use App\Models\logoSite;
-use App\Models\product;
-use App\Models\size;
 use Artesaos\SEOTools\Facades\JsonLd;
 use Artesaos\SEOTools\Facades\OpenGraph;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Artesaos\SEOTools\Facades\TwitterCard;
 use Illuminate\Support\Facades\Session;
 use Livewire\Component;
+use Modules\Product\Color\Models\color;
+use Modules\Product\Product\Models\product;
+use Modules\Product\Size\Models\size;
 
 class Index extends Component
 {
@@ -197,35 +197,35 @@ class Index extends Component
                 $carts = null;
             }
         }
+        if(false) {
+            SEOMeta::setTitle('سبد خرید');
+            $description = footerTitle::get();
+//        SEOMeta::setDescription($description[5]->title);
+//        OpenGraph::setDescription($description[5]->title);
+            OpenGraph::setTitle('سبد خرید' . ' - پوشیار');
+            OpenGraph::setUrl('https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
+            OpenGraph::addProperty('type', 'website');
+            OpenGraph::addProperty('locale', 'fa_IR');
+            OpenGraph::setSiteName('تولید و پخش تونیک زنانه - پوشیار');
+            $logo = logoSite::first();
+            OpenGraph::addImage('https://' . $_SERVER['HTTP_HOST'] . '/uploads/' . $logo->img, ['height' => 300, 'width' => 300]);
+            SEOMeta::setCanonical('https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
+            SEOMeta::setRobots('index,follow');
 
-        SEOMeta::setTitle('سبد خرید');
-        $description = footerTitle::get();
-        SEOMeta::setDescription($description[5]->title);
-        OpenGraph::setDescription($description[5]->title);
-        OpenGraph::setTitle('سبد خرید' . ' - پوشیار');
-        OpenGraph::setUrl('https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
-        OpenGraph::addProperty('type', 'website');
-        OpenGraph::addProperty('locale', 'fa_IR');
-        OpenGraph::setSiteName('تولید و پخش تونیک زنانه - پوشیار');
-        $logo = logoSite::first();
-        OpenGraph::addImage('https://' . $_SERVER['HTTP_HOST'] . '/uploads/' . $logo->img, ['height' => 300, 'width' => 300]);
-        SEOMeta::setCanonical('https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
-        SEOMeta::setRobots('index,follow');
+            TwitterCard::setType('summary_large_image');
+            TwitterCard::setTitle('سبد خرید' . ' - پوشیار');
+            TwitterCard::setSite('@pooshyar');
+            TwitterCard::setDescription($description[5]->title);
+            TwitterCard::setUrl('https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
+            TwitterCard::setImage('https://' . $_SERVER['HTTP_HOST'] . '/uploads/' . $logo->img);
 
-        TwitterCard::setType('summary_large_image');
-        TwitterCard::setTitle('سبد خرید' . ' - پوشیار');
-        TwitterCard::setSite('@pooshyar');
-        TwitterCard::setDescription($description[5]->title);
-        TwitterCard::setUrl('https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
-        TwitterCard::setImage('https://' . $_SERVER['HTTP_HOST'] . '/uploads/' . $logo->img);
-
-        JsonLd::setType('website');
-        JsonLd::setTitle('سبد خرید' . ' - پوشیار');
-        JsonLd::setSite('pooshyar');
-        JsonLd::setDescription($description[5]->title);
-        JsonLd::setUrl('https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
-        JsonLd::setImage('https://' . $_SERVER['HTTP_HOST'] . '/uploads/' . $logo->img);
-
+            JsonLd::setType('website');
+            JsonLd::setTitle('سبد خرید' . ' - پوشیار');
+            JsonLd::setSite('pooshyar');
+            JsonLd::setDescription($description[5]->title);
+            JsonLd::setUrl('https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
+            JsonLd::setImage('https://' . $_SERVER['HTTP_HOST'] . '/uploads/' . $logo->img);
+        }
         return view('livewire.home.cart.index', compact('carts'))->layout('layouts.product');
     }
 }

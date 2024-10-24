@@ -13,15 +13,15 @@
             </form>
             </a>
             <a class="tab__item btn btn-danger text-white" style="margin-top:-60px; margin-left:10px; float:left;"
-            href="{{ route('article.trashed') }}"
+               href="{{ route('article.trashed') }}"
             >سطل زباله
-            ({{ \App\Models\article::onlyTrashed()->count() }})
+                ({{ \Modules\Blog\Models\blog::onlyTrashed()->count() }})
             </a>
 
             <a class="tab__item btn btn-success text-white" style="margin-top:-60px; margin-left:120px; float:left;"
-            href="{{ route('article.create') }}">
-            افزودن مقاله
-        </a>
+               href="{{ route('article.create') }}">
+                افزودن مقاله
+            </a>
         </div>
 
         <div class="table__box">
@@ -41,51 +41,51 @@
                 </thead>
                 <tbody>
                 @if ($readyToLoad)
-                @forelse ($articles as $article)
-                <tr role="row">
-                    <td>{{ $article->id }}</td>
-                    <td>
-                        <img src="/uploads/{{$article->img}}" alt="{{ $article->title }}" width="60px">
-                    </td>
-                    <td>{{ $article->title }}</td>
-                    <td>
-                        _دسته:
-                        {{ $article->category->title }}
-                     <br>
-                     _زیر دسته
-                     {{ $article->subcategory->title }}
-                    </td>
-                    <td>{{ $article->link }}</td>
-                    <td>{{ $article->view ? $article->view : 0}}</td>
-                    <td>{{ jdate($article->created_at)->format('%Y/%m/%d') }}</td>
-                    <td>
-                        @if ($article->status==1)
-                        <button wire:click="updateArticledisable({{ $article->id }})"
-                            class="badge-success badge" style="background-color: green">فعال
-                        </button>
-                        @else
-                        <button wire:click="updateArticleinable({{ $article->id }})"
-                            class="badge-danger badge" style="background-color: red"> غیر فعال
-                        </button>
-                        @endif
-                    </td>
-                    <td>
-                        <button wire:click='remove({{ $article->id }})' href="" class="item-delete mlg-15"
-                            title="حذف"></button>
+                    @forelse ($articles as $article)
+                        <tr role="row">
+                            <td>{{ $article->id }}</td>
+                            <td>
+                                <img src="/uploads/{{$article->img}}" alt="{{ $article->title }}" width="60px">
+                            </td>
+                            <td>{{ $article->title }}</td>
+                            <td>
+                                _دسته:
+                                {{ $article->category->title }}
+                                <br>
+                                _زیر دسته
+                                {{ $article->subcategory->title }}
+                            </td>
+                            <td>{{ $article->link }}</td>
+                            <td>{{ $article->view ? $article->view : 0}}</td>
+                            <td>{{ jdate($article->created_at)->format('%Y/%m/%d') }}</td>
+                            <td>
+                                @if ($article->status==1)
+                                    <button wire:click="updateArticledisable({{ $article->id }})"
+                                            class="badge-success badge" style="background-color: green">فعال
+                                    </button>
+                                @else
+                                    <button wire:click="updateArticleinable({{ $article->id }})"
+                                            class="badge-danger badge" style="background-color: red"> غیر فعال
+                                    </button>
+                                @endif
+                            </td>
+                            <td>
+                                <button wire:click='remove({{ $article->id }})' href="" class="item-delete mlg-15"
+                                        title="حذف"></button>
 
-                        <a href="{{ route('article.update',$article) }}" class="item-edit mlg-15"
-                            title="ویرایش"></a>
+                                <a href="{{ route('article.update',$article) }}" class="item-edit mlg-15"
+                                   title="ویرایش"></a>
 
-                        <a href="{{ route('article.view',$article) }}" class="item-eye"
-                            title="نمایش"></a>
-                    </td>
-                </tr>
-                @empty
-                <div>مقالی وجود ندارد</div>
-                @endforelse
-                {{ $articles->render() }}
+                                <a href="{{ route('article.view',$article) }}" class="item-eye"
+                                   title="نمایش"></a>
+                            </td>
+                        </tr>
+                    @empty
+                        <div>مقالی وجود ندارد</div>
+                    @endforelse
+                    {{ $articles->render() }}
                 @else
-                <div class="alert-warning alert">در حال خواندن اطلاعات</div>
+                    <div class="alert-warning alert">در حال خواندن اطلاعات</div>
                 @endif
 
                 </tbody>

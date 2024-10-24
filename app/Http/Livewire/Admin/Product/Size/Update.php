@@ -3,8 +3,8 @@
 namespace App\Http\Livewire\Admin\Product\Size;
 
 use App\Models\log;
-use App\Models\size;
 use Livewire\Component;
+use Modules\Product\Size\Models\size;
 
 class Update extends Component
 {

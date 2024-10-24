@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire\Home\Article;
 
-use App\Models\article;
 use App\Models\cart;
 use App\Models\categoryArticle;
 use Artesaos\SEOTools\Facades\JsonLd;
@@ -11,6 +10,7 @@ use Artesaos\SEOTools\Facades\SEOMeta;
 use Artesaos\SEOTools\Facades\TwitterCard;
 use Illuminate\Support\Facades\Session;
 use Livewire\Component;
+use Modules\Blog\Models\blog;
 
 class Category extends Component
 {
@@ -46,7 +46,7 @@ class Category extends Component
         if(! $this->category){
             abort(404);
         }else{
-        $articles = article::where('category_article_id',$this->category->id)->latest()->paginate(10);
+        $articles = blog::where('category_article_id',$this->category->id)->latest()->paginate(10);
         $category = $this->category;
 
         if (auth()->user()) {

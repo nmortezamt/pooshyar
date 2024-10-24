@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire\Home\Article;
 
-use App\Models\article;
 use App\Models\cart;
 use App\Models\subcategoryArticle;
 use Artesaos\SEOTools\Facades\JsonLd;
@@ -11,6 +10,7 @@ use Artesaos\SEOTools\Facades\SEOMeta;
 use Artesaos\SEOTools\Facades\TwitterCard;
 use Illuminate\Support\Facades\Session;
 use Livewire\Component;
+use Modules\Blog\Models\blog;
 
 class Subcategory extends Component
 {
@@ -45,7 +45,7 @@ class Subcategory extends Component
         if(! $this->subcategory){
             abort(404);
         }else{
-        $articles = article::where('subcategory_article_id',$this->subcategory->id)->latest()->paginate(10);
+        $articles = blog::where('subcategory_article_id',$this->subcategory->id)->latest()->paginate(10);
         $subcategory = $this->subcategory;
         if (auth()->user()) {
             $carts = cart::where('user_id', auth()->user()->id)->where('status', 0)->get();

@@ -21,11 +21,11 @@
     if (isset(\App\Models\SiteHeader::where('status', 1)->get()[6])) {
         $menu7 = \App\Models\SiteHeader::where('status', 1)->get()[6];
     }
-    $tel = \App\Models\footerTitle::get()[2];
-    $logo = \App\Models\logoSite::get()[0];
+//    $tel = \App\Models\footerTitle::get()[2];
+//    $logo = \App\Models\logoSite::get()[0];
 
 @endphp
-<!-- START HEADER -->
+    <!-- START HEADER -->
 <header class="header_wrap">
     {{-- <div class="top-header light_skin bg_dark d-none d-md-block">
         <div class="container">
@@ -72,8 +72,8 @@
         <div class="container">
             <div class="nav_block">
                 <a class="navbar-brand" href="/">
-                    <img class="logo_light" src="/uploads/{{ $logo->img }}" alt="{{ env('APP_NAME') }}">
-                    <img class="logo_dark" src="/uploads/{{ $logo->img }}" alt="logo" width="150px">
+                    {{--                    <img class="logo_light" src="/uploads/{{ $logo->img }}" alt="{{ env('APP_NAME') }}">--}}
+                    {{--                    <img class="logo_dark" src="/uploads/{{ $logo->img }}" alt="logo" width="150px">--}}
                 </a>
                 @include('livewire.home.home.search')
 
@@ -99,8 +99,9 @@
                     @endif
 
                     <li class="dropdown cart_dropdown"><a class="nav-link cart_trigger"
-                         href="#"
-                            data-toggle="dropdown"><i class="linearicons-bag2"></i><span class="cart_count">
+                                                          href="#"
+                                                          data-toggle="dropdown"><i class="linearicons-bag2"></i><span
+                                class="cart_count">
                                 @if (auth()->user())
                                     {{ \App\Models\persianNumber::translate(number_format($carts->count())) }}
                                 @elseif (!empty($carts))
@@ -110,74 +111,78 @@
                                 @endif
                             </span></a>
                         @if (auth()->user())
-                        @if (isset($carts[0]->id))
-                            <div class="cart_box cart_right dropdown-menu dropdown-menu-right">
-                                <ul class="cart_list">
-                                    @forelse ($carts as $cart)
-                                        <li>
-                                            <a wire:click='removeCart({{ $cart->id }})' class="item_remove">
-                                                <div wire:loading wire:target="removeCart({{ $cart->id }})">
-                                                    <i class="fas fa-spinner fa-spin"></i>
-                                                </div>
-                                                <span wire:loading.remove
-                                                    wire:target="removeCart({{ $cart->id }})">
+                            @if (isset($carts[0]->id))
+                                <div class="cart_box cart_right dropdown-menu dropdown-menu-right">
+                                    <ul class="cart_list">
+                                        @forelse ($carts as $cart)
+                                            <li>
+                                                <a wire:click='removeCart({{ $cart->id }})' class="item_remove">
+                                                    <div wire:loading wire:target="removeCart({{ $cart->id }})">
+                                                        <i class="fas fa-spinner fa-spin"></i>
+                                                    </div>
+                                                    <span wire:loading.remove
+                                                          wire:target="removeCart({{ $cart->id }})">
                                                     <i class="ti-close"></i>
                                                 </span>
-                                            </a>
+                                                </a>
 
-                                            <a
-                                                href="{{ route('product.single.index', ['id' => $cart->product->id, 'link' => $cart->product->link]) }}"><img
-                                                    src="/uploads/{{ $cart->product->img }}"
-                                                    alt="{{ $cart->product->title }}">{{ $cart->product->title }}</a>
-                                            <span class="cart_quantity"><span
-                                                    class="cart_amount"></span>{{ \App\Models\persianNumber::translate(number_format($cart->product_price)) }}<span
-                                                    class="price_symbole">x{{ \App\Models\persianNumber::translate(number_format($cart->count)) }}تومان
+                                                <a
+                                                    href="{{ route('product.single.index', ['id' => $cart->product->id, 'link' => $cart->product->link]) }}"><img
+                                                        src="/uploads/{{ $cart->product->img }}"
+                                                        alt="{{ $cart->product->title }}">{{ $cart->product->title }}
+                                                </a>
+                                                <span class="cart_quantity"><span
+                                                        class="cart_amount"></span>{{ \App\Models\persianNumber::translate(number_format($cart->product_price)) }}<span
+                                                        class="price_symbole">x{{ \App\Models\persianNumber::translate(number_format($cart->count)) }}تومان
                                                 </span></span>
-                                        </li>
-                                    @empty
-                                    @endforelse
-                                </ul>
-                                <div class="cart_footer">
-                                    <p class="cart_total"><strong>مجموع:</strong> <span class="cart_price"> <span
-                                                class="price_symbole">تومان</span></span>{{ \App\Models\persianNumber::translate(number_format($carts->sum('total_price'))) }}
-                                    </p>
-                                    <p class="cart_buttons"><a href="{{ route('cart.index') }}"
-                                            class="btn btn-fill-line view-cart">مشاهده سبد خرید</a>
-                                        @if (isset($carts[0]->id) && !Request::routeIs('order.index'))
-                                            <a wire:click='orderForm'
-                                                class="btn btn-fill-out checkout text-white">پرداخت</a>
-                                        @endif
+                                            </li>
+                                        @empty
+                                        @endforelse
+                                    </ul>
+                                    <div class="cart_footer">
+                                        <p class="cart_total"><strong>مجموع:</strong> <span class="cart_price"> <span
+                                                    class="price_symbole">تومان</span></span>{{ \App\Models\persianNumber::translate(number_format($carts->sum('total_price'))) }}
+                                        </p>
+                                        <p class="cart_buttons"><a href="{{ route('cart.index') }}"
+                                                                   class="btn btn-fill-line view-cart">مشاهده سبد
+                                                خرید</a>
+                                            @if (isset($carts[0]->id) && !Request::routeIs('order.index'))
+                                                <a wire:click='orderForm'
+                                                   class="btn btn-fill-out checkout text-white">پرداخت</a>
+                                            @endif
 
-                                    </p>
+                                        </p>
+                                    </div>
+
                                 </div>
-
-                            </div>
                             @else
-                            <div class="cart_box cart_right dropdown-menu dropdown-menu-right">
-                                <ul class="cart_list">
-                                    <h5 class="title_cart_null">سبد خرید خالی می باشد</h5>
-                                    <li>
-                                        <img src="{{ asset('pooshyar/assets/images/add-to-basket-3d-illustration-png.png') }}"
-                                            alt="سبد خرید خالی" class="img_cart_list">
+                                <div class="cart_box cart_right dropdown-menu dropdown-menu-right">
+                                    <ul class="cart_list">
+                                        <h5 class="title_cart_null">سبد خرید خالی می باشد</h5>
+                                        <li>
+                                            <img
+                                                src="{{ asset('pooshyar/assets/images/add-to-basket-3d-illustration-png.png') }}"
+                                                alt="سبد خرید خالی" class="img_cart_list">
 
-                                    </li>
+                                        </li>
 
-                                </ul>
-                                <div class="cart_footer">
-                                    <p class="cart_buttons"><a href="{{ route('cart.index') }}"
-                                            class="btn btn-fill-line view-cart">مشاهده سبد خرید</a>
-                                    </p>
+                                    </ul>
+                                    <div class="cart_footer">
+                                        <p class="cart_buttons"><a href="{{ route('cart.index') }}"
+                                                                   class="btn btn-fill-line view-cart">مشاهده سبد
+                                                خرید</a>
+                                        </p>
+                                    </div>
+
                                 </div>
-
-                            </div>
-                        @endif
+                            @endif
 
                         @elseif (!empty($carts))
                             <div class="cart_box cart_right dropdown-menu dropdown-menu-right">
                                 <ul class="cart_list">
                                     @forelse ($carts as $cart)
                                         @php
-                                            $product = \App\Models\product::where('id', $cart['product_id'])->first();
+                                            $product = \Modules\Product\Product\Models\product::where('id', $cart['product_id'])->first();
                                         @endphp
                                         <li>
                                             <a wire:click='removeCart({{ $cart['id'] }})' class="item_remove">
@@ -185,7 +190,7 @@
                                                     <i class="fas fa-spinner fa-spin"></i>
                                                 </div>
                                                 <span wire:loading.remove
-                                                    wire:target="removeCart({{ $cart['id'] }})">
+                                                      wire:target="removeCart({{ $cart['id'] }})">
                                                     <i class="ti-close"></i>
                                                 </span>
                                             </a>
@@ -213,10 +218,10 @@
                                                 class="price_symbole">تومان</span></span>{{ \App\Models\persianNumber::translate(number_format($total_price_cart)) }}
                                     </p>
                                     <p class="cart_buttons"><a href="{{ route('cart.index') }}"
-                                            class="btn btn-fill-line view-cart">مشاهده سبد خرید</a>
+                                                               class="btn btn-fill-line view-cart">مشاهده سبد خرید</a>
                                         @if (isset($carts) && !Request::routeIs('order.index'))
                                             <a wire:click='orderForm'
-                                                class="btn btn-fill-out checkout text-white">پرداخت</a>
+                                               class="btn btn-fill-out checkout text-white">پرداخت</a>
                                         @endif
 
                                     </p>
@@ -228,7 +233,8 @@
                                 <ul class="cart_list">
                                     <h5 class="title_cart_null">سبد خرید خالی می باشد</h5>
                                     <li>
-                                        <img src="{{ asset('pooshyar/assets/images/add-to-basket-3d-illustration-png.png') }}"
+                                        <img
+                                            src="{{ asset('pooshyar/assets/images/add-to-basket-3d-illustration-png.png') }}"
                                             alt="سبد خرید خالی" class="img_cart_list">
 
                                     </li>
@@ -236,7 +242,7 @@
                                 </ul>
                                 <div class="cart_footer">
                                     <p class="cart_buttons"><a href="{{ route('cart.index') }}"
-                                            class="btn btn-fill-line view-cart">مشاهده سبد خرید</a>
+                                                               class="btn btn-fill-line view-cart">مشاهده سبد خرید</a>
                                     </p>
                                 </div>
 
@@ -254,16 +260,16 @@
                 <div class="col-lg-3 col-md-4 col-sm-6 col-3">
                     <div class="categories_wrap">
                         <button type="button" data-toggle="collapse" data-target="#navCatContent" aria-expanded="false"
-                            class="categories_btn categories_menu">
+                                class="categories_btn categories_menu">
                             <span>{{ $menu4->title ?? '' }}</span><i class="linearicons-menu"></i>
                         </button>
                         <div id="navCatContent" class="navbar collapse">
                             <ul>
-                                @foreach (\App\Models\category::where('status', 1)->take(10)->get() as $category)
+                                @foreach (\Modules\Category\Models\category::where('status', 1)->take(10)->get() as $category)
                                     @if (\App\Models\subcategory::where('parent', $category->id)->first() != null)
                                         <li class="dropdown dropdown-mega-menu">
                                             <a class="dropdown-item nav-link dropdown-toggler" href="#"
-                                                data-toggle="dropdown">
+                                               data-toggle="dropdown">
                                                 @if (isset($slink) && $slink->parent == $category->id)
                                                     <span class="text-danger">{{ $category->title }}</span>
                                                 @elseif(isset($link) && $link->title == $category->title)
@@ -282,7 +288,7 @@
                                                                         <li class="dropdown-header">
                                                                             @if (isset($slink) && $slink->title == $subcategory->title)
                                                                                 <a href="{{ route('product.subcategory.index', $subcategory->link) }}"
-                                                                                    class="text-danger">{{ $subcategory->title }}</a>
+                                                                                   class="text-danger">{{ $subcategory->title }}</a>
                                                                             @else
                                                                                 <a
                                                                                     href="{{ route('product.subcategory.index', $subcategory->link) }}">{{ $subcategory->title }}</a>
@@ -300,7 +306,7 @@
                                                                             <li class="dropdown-header">
                                                                                 @if (isset($slink) && $slink->title == $twosub->title)
                                                                                     <a href="{{ route('product.subcategory.index', $twosub->link) }}"
-                                                                                        class="text-danger">{{ $twosub->title }}</a>
+                                                                                       class="text-danger">{{ $twosub->title }}</a>
                                                                                 @else
                                                                                     <a
                                                                                         href="{{ route('product.subcategory.index', $twosub->link) }}">{{ $twosub->title }}</a>
@@ -315,7 +321,7 @@
                                                     <li class="mega-menu-col col-lg-5">
                                                         <div class="header-banner2">
                                                             <img src="/uploads/{{ $category->img }}"
-                                                                alt="menu_banner1">
+                                                                 alt="menu_banner1">
                                                             <div class="banne_info">
                                                             </div>
                                                         </div>
@@ -334,13 +340,13 @@
                             <li><a class="dropdown-item nav-link nav_item" href="register.html"><i class="flaticon-music-system"></i> <span>Home Audio & Theater</span></a></li>
                             <li><a class="dropdown-item nav-link nav_item" href="coming-soon.html"><i class="flaticon-monitor"></i> <span>TV & Smart Box</span></a></li>
                             <li><a class="dropdown-item nav-link nav_item" href="404.html"><i class="flaticon-printer"></i> <span>Printer</span></a></li> --}}
-                                @if (\App\Models\category::count() > 9)
+                                @if (\Modules\Category\Models\category::count() > 9)
                                     <li>
                                         <ul class="more_slide_open">
-                                            @foreach (\App\Models\category::where('status', 1)->where('id', '>', 10)->get() as $moreCategory)
+                                            @foreach (\Modules\Category\Models\category::where('status', 1)->where('id', '>', 10)->get() as $moreCategory)
                                                 <li>
                                                     <a class="dropdown-item nav-link nav_item"
-                                                        href="{{ route('product.category.index', $moreCategory->link) }}"><i
+                                                       href="{{ route('product.category.index', $moreCategory->link) }}"><i
                                                             class="flaticon-fax"></i>
                                                         @if (isset($link) && $link->title == $moreCategory->title)
                                                             <span
@@ -355,17 +361,17 @@
                                     </li>
                                 @endif
                             </ul>
-                            @if (\App\Models\category::count() > 9)
+                            @if (\Modules\Category\Models\category::count() > 9)
                                 <div class="more_categories">دسته بندی بیشتر</div>
-                            @endif
-                            </ul>
+                                @endif
+                                </ul>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-9 col-md-8 col-sm-6 col-9" wire:ignore>
                     <nav class="navbar navbar-expand-lg">
                         <button class="navbar-toggler side_navbar_toggler" type="button" data-toggle="collapse"
-                            data-target="#navbarSidetoggle" aria-expanded="false">
+                                data-target="#navbarSidetoggle" aria-expanded="false">
                             <span class="ion-android-menu"></span>
                         </button>
                         <div class="pr_search_icon">
@@ -376,22 +382,24 @@
                             <ul class="navbar-nav">
                                 <li>
                                     <a class="nav-link nav_item {{ Request::routeIs('home.index') ? 'active' : '' }}"
-                                        href="{{ $menu1->link ?? '' }}">{{ $menu1->title ?? '' }}</a>
+                                       href="{{ $menu1->link ?? '' }}">{{ $menu1->title ?? '' }}</a>
                                 </li>
 
-                                <li><a class="nav-link nav_item {{ Request::routeIs('product.all', 'product.category.index', 'product.subcategory.index', 'product.single.index') ? 'active' : '' }}"
-                                        href=" {{ route('product.all') }}">{{ $menu2->title ?? '' }}</a></li>
+                                <li>
+                                    <a class="nav-link nav_item {{ Request::routeIs('product.all', 'product.category.index', 'product.subcategory.index', 'product.single.index') ? 'active' : '' }}"
+                                       href=" {{ route('product.all') }}">{{ $menu2->title ?? '' }}</a></li>
 
-                                <li><a class="nav-link nav_item {{ Request::routeIs('article.all.index', 'article.single.index', 'article.category.index', 'article.subcategory.index') ? 'active' : '' }}"
-                                        href="{{ route('article.all.index') }}">{{ $menu3->title ?? '' }}</a></li>
+                                <li>
+                                    <a class="nav-link nav_item {{ Request::routeIs('article.all.index', 'article.single.index', 'article.category.index', 'article.subcategory.index') ? 'active' : '' }}"
+                                       href="{{ route('article.all.index') }}">{{ $menu3->title ?? '' }}</a></li>
                                 </li>
                                 <li>
                                     <a class="nav-link nav_item {{ Request::routeIs('about.index') ? 'active' : '' }}"
-                                        href="{{ route('about.index') }}">{{ $menu5->title ?? '' }}</a>
+                                       href="{{ route('about.index') }}">{{ $menu5->title ?? '' }}</a>
                                 </li>
                                 <li>
                                     <a class="nav-link nav_item"
-                                        href="{{ $menu6->link ?? '' }}">{{ $menu6->title ?? '' }}</a>
+                                       href="{{ $menu6->link ?? '' }}">{{ $menu6->title ?? '' }}</a>
                                 </li>
                                 <li><a class="nav-link nav_item" href="{{ route('contact.index') }}">
                                         {{ $menu7->title ?? '' }}</a></li>
@@ -399,8 +407,8 @@
                         </div>
                         <div class="contact_phone contact_support">
                             <i class="linearicons-phone-wave"></i>
-                            <a
-                                href="tel:{{ $tel->title }}">{{ \App\Models\persianNumber::translate($tel->title) }}</a>
+                            {{--                            <a--}}
+                            {{--                                href="tel:{{ $tel->title }}">{{ \App\Models\persianNumber::translate($tel->title) }}</a>--}}
                         </div>
                     </nav>
                 </div>

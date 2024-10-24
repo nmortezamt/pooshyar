@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Modules\Blog\Models\blog;
+use Modules\User\Models\User;
 
 class commentArticle extends Model
 {
@@ -17,7 +19,7 @@ class commentArticle extends Model
 
     public function article()
     {
-        return $this->belongsTo(article::class , 'article_id','id');
+        return $this->belongsTo(blog::class , 'article_id','id');
     }
     public function answer()
     {

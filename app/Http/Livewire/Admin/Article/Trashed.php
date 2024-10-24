@@ -2,12 +2,12 @@
 
 namespace App\Http\Livewire\Admin\Article;
 
-use App\Models\article;
 use App\Models\log;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Modules\Blog\Models\blog;
 
 class Trashed extends Component
 {
@@ -24,7 +24,7 @@ class Trashed extends Component
 
     public function remove($removeId)
     {
-        $article = article::onlyTrashed()->find($removeId);
+        $article = blog::onlyTrashed()->find($removeId);
         Storage::disk('public')->delete("uploads", $article->img);
         $article->forceDelete();
         $this->emit('toast', 'success', ' مقاله به صورت کامل از دیتابیس حذف شد');
@@ -38,7 +38,7 @@ class Trashed extends Component
 
     public function restorearticle($id)
     {
-        $article = article::withTrashed()->where('id', $id)->first();
+        $article = blog::withTrashed()->where('id', $id)->first();
         $article->restore();
         $this->emit('toast', 'success', ' مقاله با موفقیت بازیابی شد');
 

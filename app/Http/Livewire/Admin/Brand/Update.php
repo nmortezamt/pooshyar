@@ -2,11 +2,11 @@
 
 namespace App\Http\Livewire\Admin\Brand;
 
-use App\Models\brand;
 use App\Models\log;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Modules\Product\Brand\Models\brand;
 
 class Update extends Component
 {

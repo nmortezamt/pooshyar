@@ -2,11 +2,11 @@
 
 namespace App\Http\Livewire\Admin\Product\Gallery;
 
-use App\Models\gallery;
 use App\Models\log;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Modules\Product\Gallery\Models\gallery;
 
 class Update extends Component
 {

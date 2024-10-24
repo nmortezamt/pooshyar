@@ -2,17 +2,17 @@
 
 namespace App\Http\Livewire\Admin\Header\Banner;
 
-use App\Models\BannerHeader;
 use App\Models\log;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Modules\Banner\Models\Banner;
 
 class Update extends Component
 {
     use WithFileUploads;
     public $image;
-    public BannerHeader $banner;
+    public Banner $banner;
     protected $rules = [
         'banner.title' => 'required | min:3 | max:100',
         'banner.link' => 'required | max:100',

@@ -3,11 +3,11 @@
 namespace App\Http\Livewire\Admin\Product;
 
 use App\Models\log;
-use App\Models\product;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Modules\Product\Product\Models\product;
 
 class Trashed extends Component
 {

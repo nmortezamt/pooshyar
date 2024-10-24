@@ -2,11 +2,11 @@
 
 namespace App\Http\Livewire\Admin\Category;
 
-use App\Models\category;
 use App\Models\log;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Modules\Category\Models\category;
 
 class Update extends Component
 {

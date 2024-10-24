@@ -1,0 +1,26 @@
+<?php
+
+return [
+    'category' => 'دسته بندی',
+    'categories' => 'دسته بندی ها',
+    'product' => 'محصول',
+    'products' => 'محصولات',
+    'brands' => 'برندها',
+    'colors' => 'رنگ ها',
+    'sizes' => 'سایز ها',
+    'galleries' => 'گالری ها',
+    'brand' => 'برند',
+    'color' => 'رنگ',
+    'size' => 'سایز',
+    'gallery' => 'گالری',
+    'blog' => 'بلاگ',
+    'blogs' => 'بلاگ ها',
+    'user' => 'کاربر',
+    'users' => 'کاربران',
+    'rolepermission' => 'دسترسی ها',
+    'home page setting' => 'تنظیمات صفحه اصلی',
+    'general' => 'تنظیمات سایت',
+    'settings' => 'تنظیمات',
+    'banner' => 'بنر',
+    'banners' => 'بنرها',
+];

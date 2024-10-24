@@ -2,11 +2,11 @@
 
 namespace App\Http\Livewire\Admin\Product\Color;
 
-use App\Models\color;
 use App\Models\log;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Modules\Product\Color\Models\color;
 
 class Trashed extends Component
 {

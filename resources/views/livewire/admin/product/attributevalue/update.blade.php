@@ -9,39 +9,39 @@
                 <div class="form-group">
                     <select wire:model.lazy='attributeValue.product_id' name="" id="" class="form-control">
                         <option value="-1">انتخاب محصول _</option>
-                        @foreach (\App\Models\product::all() as $product)
-                        <option value="{{ $product->id }}">{{ $product->title }}</option>
+                        @foreach (\Modules\Product\Product\Models\product::all() as $product)
+                            <option value="{{ $product->id }}">{{ $product->title }}</option>
                         @endforeach
                     </select>
                     @error('attributeValue.product_id')
                     <span class="text-danger">{{ $message }}</span>
-                @enderror
+                    @enderror
                 </div>
 
                 <div class="form-group">
                     <select wire:model.lazy='attributeValue.attribute_id' class="form-control">
                         <option value="-1">انتخاب زیر دسته مشخصات کالا _</option>
                         @foreach ($att as $attribute)
-                        <option value="{{ $attribute->id }}">--{{ $attribute->title }}</option>
+                            <option value="{{ $attribute->id }}">--{{ $attribute->title }}</option>
                         @endforeach
                     </select>
                     @error('attributeValue.attribute_id')
                     <span class="text-danger">{{ $message }}</span>
-                @enderror
+                    @enderror
                 </div>
 
                 <div class="form-group">
                     <input wire:model.lazy='attributeValue.value' type="text" placeholder="مقدار مشخصات کالا "
-                        class="form-control">
+                           class="form-control">
                     @error('attributeValue.value')
-                        <span class="text-danger">{{ $message }}</span>
+                    <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
 
                 <div class="form-group">
                     <div class="notificationGroup">
                         <input wire:model='attributeValue.status' type="checkbox" id="option4" class="form-control"
-                            name="status">
+                               name="status">
                         <label for="option4">نمایش در مقدار مشخصات کالا</label>
                     </div>
                 </div>

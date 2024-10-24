@@ -2,12 +2,12 @@
 
 namespace App\Http\Livewire\Admin\Brand;
 
-use App\Models\brand;
 use App\Models\log;
-use App\Models\product;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
+use Modules\Product\Brand\Models\brand;
+use Modules\Product\Product\Models\product;
 
 class Index extends Component
 {

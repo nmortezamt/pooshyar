@@ -2,12 +2,12 @@
 
 namespace App\Http\Livewire\Admin\Category;
 
-use App\Models\category;
 use App\Models\log;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Modules\Category\Models\category;
 
 class Trashed extends Component
 {

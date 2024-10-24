@@ -1,0 +1,12 @@
+{
+    "Category": true,
+    "Product": true,
+    "Blog": true,
+    "User": true,
+    "RolePermissions": true,
+    "Auth": true,
+    "Setting": true,
+    "Front": true,
+    "Shared": true,
+    "Banner": true
+}

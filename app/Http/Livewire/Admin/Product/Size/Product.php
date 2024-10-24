@@ -3,10 +3,10 @@
 namespace App\Http\Livewire\Admin\Product\Size;
 
 use App\Models\log;
-use App\Models\product as ModelsProduct;
-use App\Models\size;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Modules\Product\Product\Models\product as ModelsProduct;
+use Modules\Product\Size\Models\size;
 
 class Product extends Component
 {

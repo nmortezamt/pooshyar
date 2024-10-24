@@ -3,10 +3,10 @@
 namespace App\Http\Livewire\Home\Profile;
 
 use App\Models\smsCode;
-use App\Models\User;
 use Exception;
 use Livewire\Component;
 use Melipayamak;
+use Modules\User\Models\User;
 
 class ForgetPassword extends Component
 {

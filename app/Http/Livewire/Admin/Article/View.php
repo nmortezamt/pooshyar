@@ -2,12 +2,12 @@
 
 namespace App\Http\Livewire\Admin\Article;
 
-use App\Models\article;
 use Livewire\Component;
+use Modules\Blog\Models\blog;
 
 class View extends Component
 {
-    public article $article;
+    public blog $article;
 
     public function render()
     {

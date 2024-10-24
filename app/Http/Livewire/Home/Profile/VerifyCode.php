@@ -3,12 +3,12 @@
 namespace App\Http\Livewire\Home\Profile;
 
 use App\Models\smsCode;
-use App\Models\User;
 use Carbon\Carbon;
 use Exception;
+use illuminate\Support\Str;
 use Livewire\Component;
 use Melipayamak;
-use illuminate\Support\Str;
+use Modules\User\Models\User;
 
 class VerifyCode extends Component
 {

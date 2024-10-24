@@ -4,21 +4,21 @@ namespace App\Http\Livewire\Home\Product;
 
 use App\Models\answerCommentProduct;
 use App\Models\cart;
-use App\Models\category;
-use App\Models\color;
 use App\Models\commentProduct;
 use App\Models\favorite;
-use App\Models\gallery;
-use App\Models\product;
-use App\Models\size;
 use Artesaos\SEOTools\Facades\JsonLd;
-use Illuminate\Support\Facades\Request;
-use Livewire\Component;
-use Stevebauman\Location\Facades\Location;
-use Artesaos\SEOTools\Facades\SEOMeta;
 use Artesaos\SEOTools\Facades\OpenGraph;
+use Artesaos\SEOTools\Facades\SEOMeta;
 use Artesaos\SEOTools\Facades\TwitterCard;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Session;
+use Livewire\Component;
+use Modules\Category\Models\category;
+use Modules\Product\Color\Models\color;
+use Modules\Product\Gallery\Models\gallery;
+use Modules\Product\Product\Models\product;
+use Modules\Product\Size\Models\size;
+use Stevebauman\Location\Facades\Location;
 
 class Index extends Component
 {

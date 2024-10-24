@@ -2,18 +2,18 @@
 
 namespace App\Http\Livewire\Admin\Article;
 
-use App\Models\article;
 use App\Models\log;
+use Illuminate\Support\Str;
 use Livewire\Component;
 use Livewire\WithFileUploads;
-use Illuminate\Support\Str;
+use Modules\Blog\Models\blog;
 
 class Create extends Component
 {
     use WithFileUploads;
     public $image;
     public $body;
-    public article $article;
+    public blog $article;
     protected $rules = [
         'article.title' => 'required | string | max:100',
         'article.link' => 'required | string | max:100',
@@ -32,12 +32,12 @@ class Create extends Component
 
     public function mount()
     {
-        $this->article = new article();
+        $this->article = new blog();
     }
     public function article()
     {
         $this->validate();
-        $article = article::query()->create([
+        $article = blog::query()->create([
             'title' => $this->article->title,
             'link' => Str::slug($this->article->link),
             'description' => $this->article->description,

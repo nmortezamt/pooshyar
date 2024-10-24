@@ -2,10 +2,10 @@
 
 namespace App\Http\Livewire\Admin\Article;
 
-use App\Models\article;
 use App\Models\log;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Modules\Blog\Models\blog;
 
 class Index extends Component
 {
@@ -23,7 +23,7 @@ class Index extends Component
 
     public function updateArticledisable($id)
     {
-        $article = article::find($id);
+        $article = blog::find($id);
         $article->update([
             'status' => 0
         ]);
@@ -36,7 +36,7 @@ class Index extends Component
     }
     public function updateArticleinable($id)
     {
-        $article = article::find($id);
+        $article = blog::find($id);
         $article->update([
             'status' => 1
         ]);
@@ -49,7 +49,7 @@ class Index extends Component
     }
     public function remove($remove)
     {
-        $article = article::find($remove);
+        $article = blog::find($remove);
         $article->delete();
         log::create([
             'user_id' => auth()->user()->id,
@@ -61,7 +61,7 @@ class Index extends Component
 
     public function render()
     {
-        $articles = $this->readyToLoad ? article::where("title", "LIKE", "%{$this->search}%")
+        $articles = $this->readyToLoad ? blog::where("title", "LIKE", "%{$this->search}%")
         ->orWhere("keyword", "LIKE", "%{$this->search}%")
         ->orWhere("id", "{$this->search}")
         ->latest()->paginate(10) : [];

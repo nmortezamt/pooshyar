@@ -1,0 +1,27 @@
+{
+    "name": "shop/product",
+    "description": "",
+    "authors": [
+        {
+            "name": "Morteza Nemati",
+            "email": "mortezanmt30@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Product\\": ""
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+        }
+    }
+}
