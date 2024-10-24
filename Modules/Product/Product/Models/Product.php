@@ -4,7 +4,7 @@ namespace Modules\Product\Product\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Modules\Category\Models\Category;
-use Modules\Product\Brand\Models\brand;
+use Modules\Product\Brand\Models\Brand;
 use Modules\Product\Color\Models\color;
 use Modules\Product\Gallery\Models\gallery;
 use Modules\Product\Size\Models\size;
